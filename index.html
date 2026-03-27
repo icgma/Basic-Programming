@@ -13,7 +13,9 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <div class="nav-brand"><span class="icon">🐍</span> 基础编程</div>
-    <div class="nav-links">
+    <button class="hamburger" id="hamburger" aria-label="菜单"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="nav-links">
+      <a href="#features">课程特色</a>
       <a href="#schedule">课程进度</a>
       <a href="#grading">考核方式</a>
       <a href="#setup">环境配置</a>
@@ -38,6 +40,36 @@
     </div>
   </div>
 </header>
+
+<!-- ===== 课程特色 ===== -->
+<section class="section section-alt" id="features">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">🌟 课程特色</h2>
+    <p class="section-subtitle">本课程采用 ASK 教学法，深度融合 AI 辅助编程工具，以项目驱动学习。</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feat-icon">🤝</span>
+        <h4>AI-Collab 理念</h4>
+        <p>AI 是学习伙伴，不是替代品</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon">📰</span>
+        <h4>新闻传播导向</h4>
+        <p>以社交媒体数据分析为主线</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon">🚀</span>
+        <h4>项目驱动学习</h4>
+        <p>通过真实项目培养解决问题能力</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon">📈</span>
+        <h4>渐进式难度</h4>
+        <p>从基础语法到数据分析平滑过渡</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ===== 课程进度表 ===== -->
 <section class="section" id="schedule">
@@ -413,6 +445,7 @@
   <div class="section-inner fade-in">
     <h2 class="section-title">📊 考核方式</h2>
     <p class="section-subtitle">形成性评估 50% + 总结性评估 50%。</p>
+    <div class="table-wrap">
     <table class="data-table">
       <thead><tr><th>考核项目</th><th>考核内容</th><th>权重</th></tr></thead>
       <tbody>
@@ -422,6 +455,7 @@
         <tr><td><strong>期末项目</strong></td><td>完成社交媒体数据采集与分析项目</td><td><strong>50%</strong></td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 </section>
 
@@ -549,6 +583,20 @@
       </div>
     </div>
 
+    <div class="topic-category">
+      <h3>💡 五、自选主题 <span class="difficulty">需与老师沟通</span></h3>
+      <div class="topic-list">
+        <div class="topic-item"><h4>自选要求</h4><p>与新闻传播相关、数据可合法获取、有明确研究问题</p></div>
+        <div class="topic-item"><h4>参考方向</h4><p>新闻事件舆论演化、KOL 影响力分析、地方媒体转型</p></div>
+        <div class="topic-item"><h4>申请流程</h4><p>第 10 周前提交选题申请，说明研究问题和数据来源</p></div>
+      </div>
+    </div>
+
+    <div class="alert alert-success" style="margin-bottom:2rem">
+      <span class="alert-icon">⚖️</span>
+      <div><strong>数据采集合规提醒</strong>：所有数据采集必须遵守《网络安全法》《个人信息保护法》，仅采集公开数据，控制频率，遵守 robots.txt 协议，不存储敏感个人信息。</div>
+    </div>
+
     <!-- Grading -->
     <h3 style="color:var(--color-text-bright);margin:2.5rem 0 1rem;font-size:1.2rem">📊 评分标准</h3>
     <table class="data-table">
@@ -673,28 +721,49 @@
 <!-- ===== Footer ===== -->
 <footer class="footer">
   <p>本网站为汕头大学《基础编程》课程教学资源，内容基于课程大纲 JOU2155B。</p>
-  <p style="margin-top:0.5rem;opacity:0.6">&copy; 2026 STU CSS Lab</p>
+  <div class="footer-links">
+    <a href="https://icgma.github.io/Lingma-Intro/" target="_blank">Lingma IDE 指南</a>
+    <a href="https://icgma.github.io/media-directory/" target="_blank">全球媒体目录</a>
+    <a href="https://docs.python.org/zh-cn/3/" target="_blank">Python 文档</a>
+    <a href="https://github.com/icgma" target="_blank">GitHub</a>
+  </div>
+  <p style="margin-top:1rem;opacity:0.6">&copy; 2026 STU CSS Lab</p>
 </footer>
+
+<!-- Scroll to Top -->
+<button class="scroll-top" id="scrollTop" aria-label="回到顶部">↑</button>
 
 <!-- ===== Scripts ===== -->
 <script>
-// Navbar scroll effect
+// Navbar scroll effect + scroll-to-top
 const navbar = document.getElementById('navbar');
+const scrollBtn = document.getElementById('scrollTop');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 50);
+  scrollBtn.classList.toggle('visible', window.scrollY > 400);
 });
+scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+// Close menu on link click
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  navLinks.classList.remove('open');
+}));
 
 // Week card toggle
 function toggleWeek(card) {
   const body = card.querySelector('.week-body');
   const wasOpen = body.classList.contains('open');
-  // Close all
   document.querySelectorAll('.week-body').forEach(b => b.classList.remove('open'));
-  // Toggle current
   if (!wasOpen) body.classList.add('open');
 }
-
-// FAQ toggle handled inline via onclick
 
 // Scroll-triggered fade-in
 const fadeEls = document.querySelectorAll('.fade-in');
