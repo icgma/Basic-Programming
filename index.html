@@ -9,10 +9,19 @@
 </head>
 <body>
 
+<!-- Animated Background -->
+<div class="bg-grid"></div>
+<div class="bg-glow bg-glow-1"></div>
+<div class="bg-glow bg-glow-2"></div>
+<div class="bg-glow bg-glow-3"></div>
+
 <!-- ===== Navbar ===== -->
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
-    <div class="nav-brand"><span class="icon">🐍</span> 基础编程</div>
+    <div class="nav-brand">
+      <div class="nav-logo">🐍</div>
+      <span>基础编程</span>
+    </div>
     <button class="hamburger" id="hamburger" aria-label="菜单"><span></span><span></span><span></span></button>
     <div class="nav-links" id="nav-links">
       <a href="#features">课程特色</a>
@@ -23,6 +32,9 @@
       <a href="#project">期末项目</a>
       <a href="#resources">学习资源</a>
       <a href="#faq">常见问题</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明亮/暗黑模式" title="切换主题">
+        <div class="theme-toggle-knob" id="themeIcon">🌙</div>
+      </button>
     </div>
   </div>
 </nav>
@@ -30,32 +42,45 @@
 <!-- ===== Hero ===== -->
 <header class="hero">
   <div class="hero-content">
+    <div class="hero-badge">🎓 汕头大学 · 长江新闻与传播学院</div>
     <h1>基础编程<br><span class="accent">AI编程与Python基础</span></h1>
     <p class="subtitle">面向新闻传播专业的编程入门课程 · 以社交媒体数据分析为主线 · AI 辅助学习</p>
+    <div class="hero-actions">
+      <a href="#schedule" class="btn btn-primary">📅 查看课程进度</a>
+      <a href="#project" class="btn btn-outline">📋 期末项目</a>
+      <a href="https://icgma.github.io/Lingma-Intro/" target="_blank" class="btn btn-outline">💻 Lingma 指南</a>
+    </div>
     <div class="hero-meta">
-      <span>📌 课程代码：JOU2155B</span>
-      <span>📚 学分：2</span>
-      <span>⏱️ 32 课时（理论 16h + 实验 16h）</span>
-      <span>🏫 长江新闻与传播学院</span>
+      <div class="hero-meta-item"><span class="emoji">📌</span> 课程代码：JOU2155B</div>
+      <div class="hero-meta-item"><span class="emoji">📚</span> 学分：2</div>
+      <div class="hero-meta-item"><span class="emoji">⏱️</span> 32 课时（理论 16h + 实验 16h）</div>
+      <div class="hero-meta-item"><span class="emoji">🏛️</span> 长江新闻与传播学院</div>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-value">16</div><div class="hero-stat-label">教学周</div></div>
+      <div><div class="hero-stat-value">5</div><div class="hero-stat-label">教学模块</div></div>
+      <div><div class="hero-stat-value">16</div><div class="hero-stat-label">选题方向</div></div>
+      <div><div class="hero-stat-value">AI</div><div class="hero-stat-label">辅助编程</div></div>
     </div>
   </div>
 </header>
 
 <!-- ===== 课程特色 ===== -->
-<section class="section section-alt" id="features">
-  <div class="section-inner fade-in">
-    <h2 class="section-title">🌟 课程特色</h2>
-    <p class="section-subtitle">本课程采用 ASK 教学法，深度融合 AI 辅助编程工具，以项目驱动学习。</p>
+<section id="features" class="section-alt">
+  <div class="container fade-in">
+    <div class="section-label">🌟 Course Features</div>
+    <h2 class="section-title">课程特色</h2>
+    <div class="section-desc">本课程采用 ASK 教学法，深度融合 AI 辅助编程工具，以项目驱动学习。</div>
     <div class="feature-grid">
       <div class="feature-card">
         <span class="feat-icon">🤝</span>
         <h4>AI-Collab 理念</h4>
-        <p>AI 是学习伙伴，不是替代品</p>
+        <p>AI 是学习伙伴，不是替代品——先思考、再求助、后重写</p>
       </div>
       <div class="feature-card">
         <span class="feat-icon">📰</span>
         <h4>新闻传播导向</h4>
-        <p>以社交媒体数据分析为主线</p>
+        <p>以社交媒体数据分析为主线，学以致用</p>
       </div>
       <div class="feature-card">
         <span class="feat-icon">🚀</span>
@@ -71,11 +96,41 @@
   </div>
 </section>
 
-<!-- ===== 课程进度表 ===== -->
-<section class="section" id="schedule">
-  <div class="section-inner fade-in">
-    <h2 class="section-title">📅 16 周课程进度</h2>
-    <p class="section-subtitle">点击任意一周查看详细内容、教学目标和作业要求。高亮显示的是当前周次。</p>
+<!-- ===== 课程进度 ===== -->
+<section id="schedule">
+  <div class="container fade-in">
+    <div class="section-label">📅 Course Schedule</div>
+    <h2 class="section-title">16 周 <span class="gradient">课程进度</span></h2>
+    <div class="section-desc">点击任意一周查看详细内容、教学目标和作业要求。高亮项为当前周次。</div>
+
+    <!-- Module Phase Indicator -->
+    <div class="module-phases">
+      <div class="module-phase" data-weeks="1-4">
+        <div class="module-phase-num">模块一</div>
+        <div class="module-phase-name">编程基础与AI入门</div>
+        <div class="module-phase-weeks">Week 1 – 4</div>
+      </div>
+      <div class="module-phase" data-weeks="5-8">
+        <div class="module-phase-num">模块二</div>
+        <div class="module-phase-name">数据结构与程序控制</div>
+        <div class="module-phase-weeks">Week 5 – 8</div>
+      </div>
+      <div class="module-phase" data-weeks="9-10">
+        <div class="module-phase-num">模块三</div>
+        <div class="module-phase-name">文件操作与数据处理</div>
+        <div class="module-phase-weeks">Week 9 – 10</div>
+      </div>
+      <div class="module-phase" data-weeks="11-14">
+        <div class="module-phase-num">模块四</div>
+        <div class="module-phase-name">网络爬虫与文本分析</div>
+        <div class="module-phase-weeks">Week 11 – 14</div>
+      </div>
+      <div class="module-phase" data-weeks="15-16">
+        <div class="module-phase-num">模块五</div>
+        <div class="module-phase-name">综合项目实践</div>
+        <div class="module-phase-weeks">Week 15 – 16</div>
+      </div>
+    </div>
 
     <div class="week-grid">
 
@@ -172,7 +227,7 @@
       </div>
 
       <!-- Week 5 -->
-      <div class="week-card current" onclick="toggleWeek(this)">
+      <div class="week-card" onclick="toggleWeek(this)">
         <div class="week-header">
           <div class="week-num">05</div>
           <div><div class="week-title">字典及其操作</div><div class="week-module">模块二：数据结构与程序控制</div></div>
@@ -310,7 +365,7 @@
       <div class="week-card" onclick="toggleWeek(this)">
         <div class="week-header">
           <div class="week-num">11</div>
-          <div><div class="week-title">网页爬虫基础</div><div class="week-module">模块三：文件操作与数据处理</div></div>
+          <div><div class="week-title">网页爬虫基础</div><div class="week-module">模块四：网络爬虫与文本分析</div></div>
         </div>
         <div class="week-body">
           <h4>📖 教学目标</h4>
@@ -441,30 +496,44 @@
 </section>
 
 <!-- ===== 考核方式 ===== -->
-<section class="section section-alt" id="grading">
-  <div class="section-inner fade-in">
-    <h2 class="section-title">📊 考核方式</h2>
-    <p class="section-subtitle">形成性评估 50% + 总结性评估 50%。</p>
-    <div class="table-wrap">
-    <table class="data-table">
-      <thead><tr><th>考核项目</th><th>考核内容</th><th>权重</th></tr></thead>
-      <tbody>
-        <tr><td>日常考勤</td><td>课堂随机点名</td><td>10%</td></tr>
-        <tr><td>课堂考查</td><td>课堂检查代码编写情况及课堂提问</td><td>20%</td></tr>
-        <tr><td>日常作业</td><td>根据预期学习结果要点布置代码作业</td><td>20%</td></tr>
-        <tr><td><strong>期末项目</strong></td><td>完成社交媒体数据采集与分析项目</td><td><strong>50%</strong></td></tr>
-      </tbody>
-    </table>
+<section id="grading" class="section-alt">
+  <div class="container fade-in">
+    <div class="section-label">📊 Assessment</div>
+    <h2 class="section-title">考核方式</h2>
+    <div class="section-desc">形成性评估 50% + 总结性评估 50%</div>
+
+    <div class="grading-grid">
+      <div class="grading-card">
+        <div class="grading-pct" style="color:var(--cyan)">10%</div>
+        <div class="grading-name">日常考勤</div>
+        <div class="grading-desc">课堂随机点名</div>
+      </div>
+      <div class="grading-card">
+        <div class="grading-pct" style="color:var(--purple)">20%</div>
+        <div class="grading-name">课堂考查</div>
+        <div class="grading-desc">代码编写检查与课堂提问</div>
+      </div>
+      <div class="grading-card">
+        <div class="grading-pct" style="color:var(--blue)">20%</div>
+        <div class="grading-name">日常作业</div>
+        <div class="grading-desc">根据学习目标布置代码作业</div>
+      </div>
+      <div class="grading-card" style="border-color:var(--emerald)">
+        <div class="grading-pct" style="background:var(--grad-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent">50%</div>
+        <div class="grading-name">期末项目</div>
+        <div class="grading-desc">社交媒体数据采集与分析</div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ===== 环境配置 ===== -->
-<section class="section" id="setup">
-  <div class="section-inner fade-in">
-    <h2 class="section-title">🛠️ 环境配置</h2>
-    <p class="section-subtitle">开始编程之前，请按顺序完成以下工具的安装。</p>
-    <div class="info-grid">
+<section id="setup">
+  <div class="container fade-in">
+    <div class="section-label">🛠️ Environment Setup</div>
+    <h2 class="section-title">环境配置</h2>
+    <div class="section-desc">开始编程之前，请按顺序完成以下工具的安装。</div>
+    <div class="info-grid" style="margin-top:28px">
       <div class="info-card">
         <span class="icon">🐍</span>
         <h3>Python 安装</h3>
@@ -493,12 +562,13 @@
 </section>
 
 <!-- ===== AI 工具指南 ===== -->
-<section class="section section-alt" id="ai-tools">
-  <div class="section-inner fade-in">
-    <h2 class="section-title">🤖 AI 编程工具指南</h2>
-    <p class="section-subtitle">本课程鼓励使用 AI 工具辅助学习，但需遵守学术诚信守则。</p>
+<section id="ai-tools" class="section-alt">
+  <div class="container fade-in">
+    <div class="section-label">🤖 AI Coding Guide</div>
+    <h2 class="section-title">AI 编程工具指南</h2>
+    <div class="section-desc">本课程鼓励使用 AI 工具辅助学习，但需遵守学术诚信守则。</div>
 
-    <div class="info-grid">
+    <div class="info-grid" style="margin-top:28px">
       <div class="info-card">
         <span class="icon">✨</span>
         <h3>怎么用 AI 学编程？</h3>
@@ -521,7 +591,7 @@
       </div>
     </div>
 
-    <div class="alert alert-info" style="margin-top:1.5rem">
+    <div class="alert alert-info" style="margin-top:24px">
       <span class="alert-icon">📘</span>
       <div>详细的 AI 工具使用教程请查阅 <a href="https://icgma.github.io/Lingma-Intro/" target="_blank"><strong>Lingma IDE 使用指南</strong></a>，包括代码补全、聊天面板、Quest 模式等 5 种使用方式。</div>
     </div>
@@ -529,19 +599,19 @@
 </section>
 
 <!-- ===== 期末项目 ===== -->
-<section class="section" id="project">
-  <div class="section-inner fade-in">
-    <h2 class="section-title">📋 期末项目</h2>
-    <p class="section-subtitle">社交媒体文本数据采集与分析 · 占总成绩 50% · 3-4 人小组</p>
+<section id="project">
+  <div class="container fade-in">
+    <div class="section-label">📋 Final Project</div>
+    <h2 class="section-title">期末项目</h2>
+    <div class="section-desc">社交媒体文本数据采集与分析 · 占总成绩 50% · 3-4 人小组</div>
 
-    <!-- Overview -->
-    <div class="alert alert-warning" style="margin-bottom:2rem">
+    <div class="alert alert-warning" style="margin-top:28px">
       <span class="alert-icon">⚠️</span>
       <div><strong>项目核心要求</strong>：选择一个社交媒体平台，围绕一个主题采集 ≥200 条数据，完成清洗、分词、词频统计、可视化，撰写分析报告。</div>
     </div>
 
     <!-- Topic Categories -->
-    <h3 style="color:var(--color-text-bright);margin-bottom:1.5rem;font-size:1.2rem">🏷️ 选题库（任选其一）</h3>
+    <h3 style="color:var(--text);margin:28px 0 20px;font-size:1.1rem">🏷️ 选题库（任选其一）</h3>
 
     <div class="topic-category">
       <h3>📰 一、主流媒体传播分析 <span class="difficulty">★★★</span></h3>
@@ -592,13 +662,14 @@
       </div>
     </div>
 
-    <div class="alert alert-success" style="margin-bottom:2rem">
+    <div class="alert alert-success" style="margin-bottom:28px">
       <span class="alert-icon">⚖️</span>
       <div><strong>数据采集合规提醒</strong>：所有数据采集必须遵守《网络安全法》《个人信息保护法》，仅采集公开数据，控制频率，遵守 robots.txt 协议，不存储敏感个人信息。</div>
     </div>
 
-    <!-- Grading -->
-    <h3 style="color:var(--color-text-bright);margin:2.5rem 0 1rem;font-size:1.2rem">📊 评分标准</h3>
+    <!-- Project Grading -->
+    <h3 style="color:var(--text);margin:28px 0 14px;font-size:1.1rem">📊 评分标准</h3>
+    <div class="table-wrap">
     <table class="data-table">
       <thead><tr><th>评分项目</th><th>权重</th><th>说明</th></tr></thead>
       <tbody>
@@ -609,9 +680,10 @@
         <tr><td>创新性</td><td>15%</td><td>独特见解或方法创新</td></tr>
       </tbody>
     </table>
+    </div>
 
     <!-- Submission Checklist -->
-    <h3 style="color:var(--color-text-bright);margin:2.5rem 0 1rem;font-size:1.2rem">📦 提交材料清单</h3>
+    <h3 style="color:var(--text);margin:28px 0 14px;font-size:1.1rem">📦 提交材料清单</h3>
     <ul class="checklist">
       <li>源代码文件（.py）— 数据采集、清洗、分析代码，含注释</li>
       <li>原始数据文件（JSON 或 CSV，≥200 条）</li>
@@ -621,8 +693,9 @@
       <li>数据采集日志（采集时间、数量、遇到的问题）</li>
     </ul>
 
-    <!-- Timeline -->
-    <h3 style="color:var(--color-text-bright);margin:2.5rem 0 1rem;font-size:1.2rem">⏱️ 项目时间安排</h3>
+    <!-- Project Timeline -->
+    <h3 style="color:var(--text);margin:28px 0 14px;font-size:1.1rem">⏱️ 项目时间安排</h3>
+    <div class="table-wrap">
     <table class="data-table">
       <thead><tr><th>周次</th><th>任务</th><th>交付物</th></tr></thead>
       <tbody>
@@ -632,15 +705,17 @@
         <tr><td>第 15-16 周</td><td>撰写报告 + 汇报</td><td>完整项目材料</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 </section>
 
 <!-- ===== 学习资源 ===== -->
-<section class="section section-alt" id="resources">
-  <div class="section-inner fade-in">
-    <h2 class="section-title">📚 学习资源</h2>
-    <p class="section-subtitle">精选教材、在线课程和工具链接。</p>
-    <div class="resource-grid">
+<section id="resources" class="section-alt">
+  <div class="container fade-in">
+    <div class="section-label">📚 Resources</div>
+    <h2 class="section-title">学习资源</h2>
+    <div class="section-desc">精选教材、在线课程和工具链接。</div>
+    <div class="resource-grid" style="margin-top:28px">
       <a href="https://docs.python.org/zh-cn/3/" target="_blank" class="resource-card">
         <div class="res-icon">🐍</div>
         <div><h4>Python 官方文档（中文）</h4><p>最权威的 Python 参考手册</p></div>
@@ -659,7 +734,7 @@
       </a>
       <a href="https://icgma.github.io/Media-Directory/" target="_blank" class="resource-card">
         <div class="res-icon">📰</div>
-        <div><h4>全球媒体目录</h4><p>课程配套数据集 · 全球 & 中国媒体</p></div>
+        <div><h4>全球媒体目录</h4><p>课程配套数据集 · 全球 &amp; 中国媒体</p></div>
       </a>
       <a href="https://github.com/" target="_blank" class="resource-card">
         <div class="res-icon">🐱</div>
@@ -667,8 +742,8 @@
       </a>
     </div>
 
-    <h3 style="color:var(--color-text-bright);margin:2.5rem 0 1rem;font-size:1.1rem">📘 推荐教材</h3>
-    <div class="info-grid" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));">
+    <h3 style="color:var(--text);margin:32px 0 14px;font-size:1.05rem">📘 推荐教材</h3>
+    <div class="info-grid" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">
       <div class="info-card">
         <h3>《Python编程：从入门到实践》第二版</h3>
         <p>人民邮电出版社 · 最适合零基础入门的 Python 教材。</p>
@@ -682,38 +757,53 @@
 </section>
 
 <!-- ===== 常见问题 ===== -->
-<section class="section" id="faq">
-  <div class="section-inner fade-in">
-    <h2 class="section-title">❓ 常见问题</h2>
-    <p class="section-subtitle">如果在这里没有找到答案，请在 Lingma IDE 中按 <kbd>Ctrl+L</kbd> 问 AI 助手。</p>
+<section id="faq">
+  <div class="container fade-in">
+    <div class="section-label">❓ FAQ</div>
+    <h2 class="section-title">常见问题</h2>
+    <div class="section-desc">如果在这里没有找到答案，请在 Lingma IDE 中按 <kbd>Ctrl+L</kbd> 问 AI 助手。</div>
 
-    <div class="faq-item" onclick="this.classList.toggle('open')">
-      <div class="faq-q">我完全没有编程基础，能跟上这门课吗？<span class="chevron">▼</span></div>
-      <div class="faq-a">完全可以！本课程就是为零基础同学设计的。我们使用 AI 辅助编程工具降低入门门槛——你可以用中文描述想做什么，AI 帮你写代码。但你需要认真上课、按时完成作业。</div>
+    <div style="margin-top:28px">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">我完全没有编程基础，能跟上这门课吗？<span class="chevron">▼</span></div>
+        <div class="faq-a">完全可以！本课程就是为零基础同学设计的。我们使用 AI 辅助编程工具降低入门门槛——你可以用中文描述想做什么，AI 帮你写代码。但你需要认真上课、按时完成作业。</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">作业可以用 AI 工具吗？<span class="chevron">▼</span></div>
+        <div class="faq-a">可以，但你必须能解释代码的每一行。建议的流程是：先自己尝试 → 卡住了问 AI → 理解后用自己的话重写。课堂会随机抽查代码理解度。</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Python 环境安装失败怎么办？<span class="chevron">▼</span></div>
+        <div class="faq-a">打开 Lingma IDE，按 <kbd>Ctrl+L</kbd> 把错误信息粘贴给 AI 助手，它会帮你逐步排查。如果还是解决不了，请在课堂上找老师或助教帮忙。</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">期末项目可以一个人做吗？<span class="chevron">▼</span></div>
+        <div class="faq-a">建议 3-4 人小组完成。项目涉及数据采集、清洗、分析、可视化和报告撰写，工作量较大。如有特殊情况需要独立完成，请提前与老师沟通。</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">自选题目需要什么条件？<span class="chevron">▼</span></div>
+        <div class="faq-a">需满足：① 与新闻传播专业相关；② 数据可合法获取；③ 有明确的研究问题。请在第 10 周前提交选题申请并获得老师批准。</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">课程使用 Lingma 还是 Trae？<span class="chevron">▼</span></div>
+        <div class="faq-a">本课程主推 <strong>Lingma IDE</strong>（通义灵码），它是阿里云出品的 AI 编程 IDE，对中文支持最好。Trae 也可以用，但课程演示和指南以 Lingma 为准。</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">爬虫采集数据违法吗？<span class="chevron">▼</span></div>
+        <div class="faq-a">合规爬取公开数据用于学术研究是允许的。但必须遵守：① 控制采集频率；② 遵守 robots.txt 协议；③ 不采集个人隐私数据；④ 仅用于课程学习。详细合规要求见第 11-12 周课程内容。</div>
+      </div>
     </div>
-    <div class="faq-item" onclick="this.classList.toggle('open')">
-      <div class="faq-q">作业可以用 AI 工具吗？<span class="chevron">▼</span></div>
-      <div class="faq-a">可以，但你必须能解释代码的每一行。建议的流程是：先自己尝试 → 卡住了问 AI → 理解后用自己的话重写。课堂会随机抽查代码理解度。</div>
-    </div>
-    <div class="faq-item" onclick="this.classList.toggle('open')">
-      <div class="faq-q">Python 环境安装失败怎么办？<span class="chevron">▼</span></div>
-      <div class="faq-a">打开 Lingma IDE，按 <kbd>Ctrl+L</kbd> 把错误信息粘贴给 AI 助手，它会帮你逐步排查。如果还是解决不了，请在课堂上找老师或助教帮忙。</div>
-    </div>
-    <div class="faq-item" onclick="this.classList.toggle('open')">
-      <div class="faq-q">期末项目可以一个人做吗？<span class="chevron">▼</span></div>
-      <div class="faq-a">建议 3-4 人小组完成。项目涉及数据采集、清洗、分析、可视化和报告撰写，工作量较大。如有特殊情况需要独立完成，请提前与老师沟通。</div>
-    </div>
-    <div class="faq-item" onclick="this.classList.toggle('open')">
-      <div class="faq-q">自选题目需要什么条件？<span class="chevron">▼</span></div>
-      <div class="faq-a">需满足：① 与新闻传播专业相关；② 数据可合法获取；③ 有明确的研究问题。请在第 10 周前提交选题申请并获得老师批准。</div>
-    </div>
-    <div class="faq-item" onclick="this.classList.toggle('open')">
-      <div class="faq-q">课程使用 Lingma 还是 Trae？<span class="chevron">▼</span></div>
-      <div class="faq-a">本课程主推 <strong>Lingma IDE</strong>（通义灵码），它是阿里云出品的 AI 编程 IDE，对中文支持最好。Trae 也可以用，但课程演示和指南以 Lingma 为准。</div>
-    </div>
-    <div class="faq-item" onclick="this.classList.toggle('open')">
-      <div class="faq-q">爬虫采集数据违法吗？<span class="chevron">▼</span></div>
-      <div class="faq-a">合规爬取公开数据用于学术研究是允许的。但必须遵守：① 控制采集频率；② 遵守 robots.txt 协议；③ 不采集个人隐私数据；④ 仅用于课程学习。详细合规要求见第 11-12 周课程内容。</div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-title">编程不只是写代码，<br>更是一种理解世界的方式</div>
+    <p class="cta-desc">16 周，从零基础到数据分析，用 Python 读懂社交媒体。</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="https://icgma.github.io/Lingma-Intro/" target="_blank" class="btn btn-primary">💻 Lingma IDE 指南</a>
+      <a href="https://github.com/icgma" target="_blank" class="btn btn-outline">⭐ GitHub 主页</a>
     </div>
   </div>
 </section>
@@ -727,7 +817,7 @@
     <a href="https://docs.python.org/zh-cn/3/" target="_blank">Python 文档</a>
     <a href="https://github.com/icgma" target="_blank">GitHub</a>
   </div>
-  <p style="margin-top:1rem;opacity:0.6">&copy; 2026 STU CSS Lab</p>
+  <p style="margin-top:12px;opacity:.5">&copy; 2026 汕头大学 · 长江新闻与传播学院 · CSS Lab</p>
 </footer>
 
 <!-- Scroll to Top -->
@@ -735,7 +825,40 @@
 
 <!-- ===== Scripts ===== -->
 <script>
-// Navbar scroll effect + scroll-to-top
+(function(){
+  // ── Theme Toggle ──
+  const html = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+  const icon = document.getElementById('themeIcon');
+
+  function setTheme(theme){
+    html.setAttribute('data-theme', theme);
+    icon.textContent = theme === 'light' ? '☀️' : '🌙';
+    localStorage.setItem('bp-theme', theme);
+  }
+
+  const saved = localStorage.getItem('bp-theme');
+  if(saved){
+    setTheme(saved);
+  } else if(window.matchMedia && window.matchMedia('(prefers-color-scheme:light)').matches){
+    setTheme('light');
+  } else {
+    setTheme('dark');
+  }
+
+  btn.addEventListener('click', function(){
+    const current = html.getAttribute('data-theme');
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  });
+
+  window.matchMedia('(prefers-color-scheme:light)').addEventListener('change', function(e){
+    if(!localStorage.getItem('bp-theme')){
+      setTheme(e.matches ? 'light' : 'dark');
+    }
+  });
+})();
+
+// ── Navbar scroll + scroll-to-top ──
 const navbar = document.getElementById('navbar');
 const scrollBtn = document.getElementById('scrollTop');
 window.addEventListener('scroll', () => {
@@ -744,20 +867,19 @@ window.addEventListener('scroll', () => {
 });
 scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-// Hamburger menu
+// ── Hamburger ──
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('open');
   navLinks.classList.toggle('open');
 });
-// Close menu on link click
 navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   hamburger.classList.remove('open');
   navLinks.classList.remove('open');
 }));
 
-// Week card toggle
+// ── Week card accordion ──
 function toggleWeek(card) {
   const body = card.querySelector('.week-body');
   const wasOpen = body.classList.contains('open');
@@ -765,14 +887,16 @@ function toggleWeek(card) {
   if (!wasOpen) body.classList.add('open');
 }
 
-// Scroll-triggered fade-in
+// ── Scroll-triggered fade-in ──
 const fadeEls = document.querySelectorAll('.fade-in');
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
-}, { threshold: 0.1 });
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
 fadeEls.forEach(el => observer.observe(el));
 
-// Active nav link highlight
+// ── Active nav link ──
 const sections = document.querySelectorAll('section[id]');
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY + 100;
@@ -782,6 +906,33 @@ window.addEventListener('scroll', () => {
     if (link) link.classList.toggle('active', scrollY >= top && scrollY < top + h);
   });
 });
+
+// ── Auto-highlight current teaching week ──
+(function(){
+  // ★ 学期第 1 周的周一日期（修改此处即可适配不同学期）
+  const SEMESTER_START = new Date('2026-02-23');
+
+  const today = new Date();
+  const diffMs = today - SEMESTER_START;
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  const currentWeek = Math.floor(diffDays / 7) + 1; // 1-indexed
+
+  if (currentWeek >= 1 && currentWeek <= 16) {
+    // Highlight the current week card
+    const weekCards = document.querySelectorAll('.week-card');
+    if (weekCards[currentWeek - 1]) {
+      weekCards[currentWeek - 1].classList.add('current');
+    }
+
+    // Highlight the current module phase
+    document.querySelectorAll('.module-phase[data-weeks]').forEach(phase => {
+      const range = phase.getAttribute('data-weeks').split('-').map(Number);
+      if (currentWeek >= range[0] && currentWeek <= range[1]) {
+        phase.classList.add('active');
+      }
+    });
+  }
+})();
 </script>
 
 </body>
