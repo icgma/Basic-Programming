@@ -1,7 +1,6 @@
-/* ===== 基础编程 · Design System v2 ===== */
+/* ===== 基础编程 · Design System v2.1 ===== */
 /* Emerald Code — a programming-oriented academic theme */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+/* Optimized for performance, accessibility, and SEO */
 
 /* ── Dark Theme (default) ── */
 :root,
@@ -35,6 +34,7 @@
   --grid-opacity:.035;
   --glow-opacity:.07;
   --code-bg:    #111d28;
+  --focus-ring: 0 0 0 3px rgba(16,185,129,.4);
 }
 
 /* ── Light Theme ── */
@@ -68,6 +68,7 @@
   --grid-opacity:.04;
   --glow-opacity:.05;
   --code-bg:    #e8eef4;
+  --focus-ring: 0 0 0 3px rgba(5,150,105,.4);
 }
 
 /* ── Reset ── */
@@ -100,6 +101,35 @@ kbd {
   border: 1px solid var(--border2);
   border-radius: 5px;
   color: var(--text);
+}
+
+/* ── Skip Link (Accessibility) ── */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  padding: 12px 24px;
+  background: var(--emerald);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 0 0 8px 8px;
+  z-index: 10000;
+  transition: top .2s;
+}
+.skip-link:focus {
+  top: 0;
+  outline: none;
+}
+
+/* ── Focus Styles (Accessibility) ── */
+:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 2px;
+}
+button:focus-visible,
+a:focus-visible {
+  box-shadow: var(--focus-ring);
+  outline: none;
 }
 
 /* ── Animated Background ── */
@@ -430,6 +460,10 @@ section {
   transform: translateY(-2px);
   box-shadow: var(--card-shadow);
 }
+.week-card:focus-visible {
+  border-color: var(--emerald);
+  box-shadow: var(--focus-ring);
+}
 .week-card.current {
   border-color: var(--emerald);
   box-shadow: 0 0 24px rgba(16,185,129,.12);
@@ -649,7 +683,7 @@ section {
   color: var(--text2);
 }
 
-/* ── FAQ ── */
+/* ── FAQ (Accessibility enhanced) ── */
 .faq-item { border-bottom: 1px solid var(--border); }
 .faq-q {
   display: flex; align-items: center; justify-content: space-between;
@@ -658,11 +692,22 @@ section {
   font-weight: 600; font-size: .92rem;
   color: var(--text);
   transition: color .2s;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
 }
 .faq-q:hover { color: var(--emerald); }
+.faq-q:focus-visible {
+  color: var(--emerald);
+  box-shadow: var(--focus-ring);
+  outline: none;
+}
 .faq-q .chevron {
   transition: transform .3s;
   font-size: .75rem; color: var(--text3);
+  flex-shrink: 0;
+  margin-left: 12px;
 }
 .faq-item.open .faq-q .chevron { transform: rotate(180deg); }
 .faq-a {
@@ -694,6 +739,10 @@ section {
   border-color: var(--emerald);
   transform: translateY(-2px);
   box-shadow: var(--card-shadow);
+}
+.resource-card:focus-visible {
+  border-color: var(--emerald);
+  box-shadow: var(--focus-ring);
 }
 .resource-card .res-icon { font-size: 1.6rem; flex-shrink: 0; }
 .resource-card h4 {
@@ -753,6 +802,7 @@ section {
 }
 .scroll-top.visible { opacity: 1; transform: translateY(0); }
 .scroll-top:hover { transform: translateY(-2px); box-shadow: var(--btn-shadow-h); }
+.scroll-top:focus-visible { box-shadow: var(--focus-ring), var(--btn-shadow); }
 
 /* ── Fade-In Animation ── */
 .fade-in {
@@ -790,6 +840,26 @@ body, nav, .navbar, .bg-grid, .bg-glow,
   transition: background .4s, color .4s, border-color .4s, box-shadow .4s, opacity .4s;
 }
 
+/* ── Print Styles ── */
+@media print {
+  .bg-grid, .bg-glow, .navbar, .scroll-top, .theme-toggle,
+  .hamburger, .hero-actions, .cta-section { display: none !important; }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 12pt;
+  }
+  .hero { min-height: auto; padding: 20px; }
+  section { padding: 20px; page-break-inside: avoid; }
+  .week-card, .info-card, .feature-card, .grading-card {
+    border: 1px solid #ccc !important;
+    background: #fff !important;
+    break-inside: avoid;
+  }
+  a { color: #000 !important; text-decoration: underline; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; }
+}
+
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .hero h1 { font-size: 2rem; }
@@ -812,9 +882,12 @@ body, nav, .navbar, .bg-grid, .bg-glow,
     flex-direction: column;
     padding: 12px 24px;
     border-bottom: 1px solid var(--border);
+    max-height: calc(100vh - 58px);
+    overflow-y: auto;
   }
   .nav-links.open { display: flex; }
   .nav-links a { padding: 10px 0; font-size: .92rem; }
+  .theme-toggle { margin: 10px 0 0 0; align-self: flex-start; }
   .week-grid { grid-template-columns: 1fr; }
   .info-grid { grid-template-columns: 1fr; }
   .topic-list { grid-template-columns: 1fr; }
