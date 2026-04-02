@@ -22,8 +22,8 @@
   --amber:      #f59e0b;
   --red:        #ef4444;
   --pink:       #ec4899;
-  --grad-hero:  linear-gradient(135deg, #10b981, #06b6d4);
-  --grad-accent:linear-gradient(135deg, #3b82f6, #8b5cf6);
+  --grad-hero:  linear-gradient(135deg, #3b82f6, #8b5cf6);
+  --grad-accent:linear-gradient(135deg, #10b981, #06b6d4);
   --grad-warm:  linear-gradient(135deg, #f59e0b, #ef4444);
   --nav-bg:     rgba(6,13,18,.88);
   --card-bg:    rgba(15,25,35,.7);
@@ -56,8 +56,8 @@
   --amber:      #d97706;
   --red:        #dc2626;
   --pink:       #db2777;
-  --grad-hero:  linear-gradient(135deg, #059669, #0891b2);
-  --grad-accent:linear-gradient(135deg, #2563eb, #7c3aed);
+  --grad-hero:  linear-gradient(135deg, #2563eb, #7c3aed);
+  --grad-accent:linear-gradient(135deg, #059669, #0891b2);
   --grad-warm:  linear-gradient(135deg, #d97706, #dc2626);
   --nav-bg:     rgba(255,255,255,.9);
   --card-bg:    rgba(255,255,255,.85);
