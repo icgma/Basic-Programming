@@ -27,6 +27,12 @@
 
 这个仓库的目标不是做一个复杂系统，而是把课程说明做成一个清晰、稳定、可直接访问的单页入口。
 
+## 页面预览
+
+<p align="center">
+  <img src="./assets/readme-preview.png" alt="基础编程课程网站首页预览" width="100%">
+</p>
+
 ## 站点内容
 
 | 模块 | 内容 |
@@ -72,6 +78,8 @@ http://localhost:8000
 
 ```text
 .
+├── assets/
+│   └── readme-preview.png
 ├── CNAME
 ├── index.html
 ├── index.css
