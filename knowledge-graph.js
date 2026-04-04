@@ -41,15 +41,16 @@
 
   const DATA = {
     categories: [
-      { key: 'syntax', name: '基础语法与控制', color: '#8b5cf6' },
-      { key: 'data', name: '数据结构与文件', color: '#0ea5e9' },
-      { key: 'tool', name: '工具与平台', color: '#f59e0b' },
-      { key: 'scenario', name: '新闻传播场景', color: '#10b981' }
+      { key: 'syntax', name: '基础语法与控制', color: '#8b5cf6', icon: '⚡' },
+      { key: 'data', name: '数据结构与文件', color: '#0ea5e9', icon: '📦' },
+      { key: 'tool', name: '工具与平台', color: '#f59e0b', icon: '🔧' },
+      { key: 'scenario', name: '新闻传播场景', color: '#10b981', icon: '📰' }
     ],
     nodes: [
       {
         id: 'for',
         name: 'For 循环',
+        icon: '🔄',
         category: 'syntax',
         size: 60,
         weeks: 'Week 6',
@@ -63,6 +64,7 @@
       {
         id: 'dict',
         name: '字典 (Dict)',
+        icon: '📋',
         category: 'data',
         size: 56,
         weeks: 'Week 5',
@@ -76,6 +78,7 @@
       {
         id: 'list',
         name: '列表 (List)',
+        icon: '📝',
         category: 'data',
         size: 52,
         weeks: 'Week 4',
@@ -89,6 +92,7 @@
       {
         id: 'string',
         name: '字符串操作',
+        icon: '✂️',
         category: 'syntax',
         size: 52,
         weeks: 'Week 3',
@@ -102,6 +106,7 @@
       {
         id: 'regex',
         name: '正则表达式',
+        icon: '🔍',
         category: 'syntax',
         size: 50,
         weeks: 'Week 14',
@@ -115,6 +120,7 @@
       {
         id: 'ifelse',
         name: 'If / Else 条件',
+        icon: '🔀',
         category: 'syntax',
         size: 48,
         weeks: 'Week 7',
@@ -128,6 +134,7 @@
       {
         id: 'json',
         name: 'JSON 数据',
+        icon: '📄',
         category: 'data',
         size: 66,
         weeks: 'Week 9',
@@ -141,6 +148,7 @@
       {
         id: 'dataframe',
         name: 'Pandas DataFrame',
+        icon: '📊',
         category: 'data',
         size: 68,
         weeks: 'Week 10',
@@ -154,6 +162,7 @@
       {
         id: 'crawl',
         name: '批量爬取微博 / 公众号',
+        icon: '🕷️',
         category: 'scenario',
         size: 74,
         weeks: 'Week 11-13',
@@ -167,6 +176,7 @@
       {
         id: 'metadata',
         name: '社交媒体元数据解析',
+        icon: '🏷️',
         category: 'scenario',
         size: 70,
         weeks: 'Week 12-13',
@@ -180,6 +190,7 @@
       {
         id: 'clean',
         name: '新闻标题文本清洗',
+        icon: '🧹',
         category: 'scenario',
         size: 68,
         weeks: 'Week 14',
@@ -193,6 +204,7 @@
       {
         id: 'sentiment',
         name: '受众情感词抽取',
+        icon: '💬',
         category: 'scenario',
         size: 66,
         weeks: 'Week 14',
@@ -206,6 +218,7 @@
       {
         id: 'trend',
         name: '选题趋势监测',
+        icon: '📈',
         category: 'scenario',
         size: 64,
         weeks: 'Week 14-16',
@@ -219,6 +232,7 @@
       {
         id: 'ai',
         name: 'AI 辅助编程',
+        icon: '🤖',
         category: 'tool',
         size: 62,
         weeks: 'Week 1-2',
@@ -232,6 +246,7 @@
       {
         id: 'setup',
         name: '环境配置',
+        icon: '⚙️',
         category: 'tool',
         size: 52,
         weeks: 'Week 2',
@@ -245,6 +260,7 @@
       {
         id: 'variables',
         name: '变量与数据类型',
+        icon: '📌',
         category: 'syntax',
         size: 50,
         weeks: 'Week 2-3',
@@ -258,6 +274,7 @@
       {
         id: 'function',
         name: '函数封装',
+        icon: '🧩',
         category: 'syntax',
         size: 54,
         weeks: 'Week 8',
@@ -271,6 +288,7 @@
       {
         id: 'fileio',
         name: '文件读写',
+        icon: '💾',
         category: 'data',
         size: 56,
         weeks: 'Week 9',
@@ -284,6 +302,7 @@
       {
         id: 'excel',
         name: 'CSV / Excel 数据',
+        icon: '📑',
         category: 'data',
         size: 56,
         weeks: 'Week 10',
@@ -297,6 +316,7 @@
       {
         id: 'requests',
         name: 'Requests 请求',
+        icon: '🌐',
         category: 'tool',
         size: 58,
         weeks: 'Week 11',
@@ -310,6 +330,7 @@
       {
         id: 'bs4',
         name: 'BeautifulSoup 解析',
+        icon: '🍜',
         category: 'tool',
         size: 56,
         weeks: 'Week 11',
@@ -323,6 +344,7 @@
       {
         id: 'github',
         name: 'GitHub 开源协作',
+        icon: '🐙',
         category: 'tool',
         size: 56,
         weeks: 'Week 12',
@@ -336,6 +358,7 @@
       {
         id: 'weibo',
         name: '微博数据采集',
+        icon: '🔥',
         category: 'scenario',
         size: 72,
         weeks: 'Week 12',
@@ -349,6 +372,7 @@
       {
         id: 'wechat',
         name: '微信公众号数据采集',
+        icon: '💚',
         category: 'scenario',
         size: 68,
         weeks: 'Week 13',
@@ -362,6 +386,7 @@
       {
         id: 'segment',
         name: '中文分词与关键词',
+        icon: '🔤',
         category: 'tool',
         size: 58,
         weeks: 'Week 14',
@@ -375,6 +400,7 @@
       {
         id: 'project',
         name: '期末项目整合',
+        icon: '🎯',
         category: 'scenario',
         size: 76,
         weeks: 'Week 15-16',
@@ -953,14 +979,22 @@
         id: node.id,
         name: node.name,
         category: category.index,
-        symbolSize: current ? node.size + 8 : matched ? node.size + 4 : node.size,
+        symbolSize: current ? node.size + 12 : matched ? node.size + 6 : node.size,
         summary: node.summary,
         itemStyle: {
-          color: rgba(category.color, alpha),
-          borderColor: current ? '#f8fafc' : matched ? ui.accent : rgba(category.color, alpha),
-          borderWidth: current ? 4 : matched ? 3 : 1.5,
-          shadowBlur: current ? 28 : matched ? 18 : 10,
-          shadowColor: dim ? 'transparent' : rgba(category.color, current ? 0.45 : 0.24)
+          color: {
+            type: 'radial',
+            x: 0.4, y: 0.3, r: 0.8,
+            colorStops: [
+              { offset: 0, color: rgba(category.color, Math.min(alpha + 0.2, 1)) },
+              { offset: 1, color: rgba(category.color, alpha) }
+            ]
+          },
+          borderColor: current ? '#f8fafc' : matched ? ui.accent : rgba(category.color, Math.min(alpha + 0.3, 1)),
+          borderWidth: current ? 4 : matched ? 3 : 2,
+          shadowBlur: current ? 36 : matched ? 24 : dim ? 0 : 14,
+          shadowColor: dim ? 'transparent' : rgba(category.color, current ? 0.55 : matched ? 0.38 : 0.22),
+          shadowOffsetY: current ? 4 : 2
         },
         label: {
           color: dim || searchDim ? ui.faint : ui.text,
@@ -1002,6 +1036,14 @@
       };
     });
 
+    // Build category counts for legend
+    const categoryCounts = {};
+    DATA.categories.forEach(c => categoryCounts[c.key] = 0);
+    view.nodes.forEach(n => {
+      const orig = nodeMap.get(n.id);
+      if (orig) categoryCounts[orig.category]++;
+    });
+
     return {
       backgroundColor: 'transparent',
       tooltip: {
@@ -1009,17 +1051,51 @@
         backgroundColor: ui.tipBg,
         borderColor: ui.tipBorder,
         borderWidth: 1,
-        textStyle: { color: ui.text, fontSize: 12, lineHeight: 18 },
+        borderRadius: 12,
+        padding: [12, 16],
+        textStyle: { color: ui.text, fontSize: 13, lineHeight: 20, fontFamily: 'Inter, Noto Sans SC, sans-serif' },
+        extraCssText: 'box-shadow: 0 8px 32px rgba(0,0,0,0.28); backdrop-filter: blur(12px);',
         formatter(params) {
           if (params.dataType === 'edge') {
             const source = nodeMap.get(params.data.source);
             const target = nodeMap.get(params.data.target);
-            return `<strong>${escapeHtml(source.name)} → ${escapeHtml(target.name)}</strong><br>${escapeHtml(params.data.relation)}`;
+            return `<div style="font-size:11px;opacity:0.6;margin-bottom:4px">概念关系</div><strong>${escapeHtml(source.name)} → ${escapeHtml(target.name)}</strong><br><span style="opacity:0.75">${escapeHtml(params.data.relation)}</span>`;
           }
-          return `<strong>${escapeHtml(params.data.name)}</strong><br>${escapeHtml(params.data.summary || '')}`;
+          const orig = nodeMap.get(params.data.id);
+          const cat = orig ? categoryMap.get(orig.category) : null;
+          const catLabel = cat ? `<span style="display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;background:${rgba(cat.color, 0.15)};color:${cat.color};margin-bottom:6px">${cat.icon} ${cat.name}</span><br>` : '';
+          return `${catLabel}<strong style="font-size:14px">${escapeHtml(params.data.name)}</strong><br><span style="opacity:0.72;line-height:1.5">${escapeHtml(params.data.summary || '')}</span>`;
         }
       },
-      animationDuration: 280,
+      legend: {
+        show: true,
+        top: 16,
+        left: 'center',
+        itemWidth: 14,
+        itemHeight: 14,
+        itemGap: 24,
+        borderRadius: 7,
+        textStyle: {
+          color: ui.text,
+          fontSize: 13,
+          fontFamily: 'Inter, Noto Sans SC, sans-serif',
+          rich: {
+            count: { fontSize: 11, color: ui.muted, padding: [0, 0, 0, 4] }
+          }
+        },
+        formatter(name) {
+          const cat = DATA.categories.find(c => c.name === name);
+          const count = cat ? categoryCounts[cat.key] : 0;
+          return `${cat ? cat.icon + ' ' : ''}${name} {count|${count}}`;
+        },
+        data: DATA.categories.map(c => ({
+          name: c.name,
+          icon: 'circle',
+          itemStyle: { color: c.color }
+        }))
+      },
+      animationDuration: 480,
+      animationEasing: 'cubicOut',
       series: [{
         type: 'graph',
         layout: 'force',
@@ -1028,14 +1104,39 @@
         data: nodes,
         links,
         categories: DATA.categories.map(item => ({ name: item.name })),
-        label: { show: true, position: 'right', formatter: '{b}', fontSize: 13 },
+        label: {
+          show: true,
+          position: 'bottom',
+          distance: 8,
+          formatter(params) {
+            const orig = nodeMap.get(params.data.id);
+            return orig && orig.icon ? `${orig.icon} ${params.name}` : params.name;
+          },
+          fontSize: 12,
+          fontWeight: 600,
+          fontFamily: 'Inter, Noto Sans SC, sans-serif',
+          textBorderColor: ui.light ? 'rgba(255,255,255,0.9)' : 'rgba(6,13,18,0.85)',
+          textBorderWidth: 3
+        },
         labelLayout: { hideOverlap: true },
         edgeSymbol: ['none', 'arrow'],
-        edgeSymbolSize: [0, 8],
-        force: { edgeLength: 165, repulsion: hasNode ? 1180 : 980, gravity: 0.08 },
-        scaleLimit: { min: 0.55, max: 2.3 },
+        edgeSymbolSize: [0, 10],
+        force: {
+          edgeLength: hasNode ? 200 : 180,
+          repulsion: hasNode ? 1400 : 1100,
+          gravity: 0.06,
+          friction: 0.6,
+          layoutAnimation: true
+        },
+        scaleLimit: { min: 0.4, max: 3 },
         lineStyle: { opacity: 0.85 },
-        emphasis: { focus: 'adjacency', scale: true }
+        emphasis: {
+          focus: 'adjacency',
+          scale: true,
+          scaleSize: 6,
+          label: { fontSize: 14, fontWeight: 800 },
+          lineStyle: { width: 4 }
+        }
       }]
     };
   }
