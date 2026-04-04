@@ -10,20 +10,352 @@
   <link rel="stylesheet" href="index.css">
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
   <style>
-    .subpage-hero { padding: 120px 20px 60px; text-align: center; }
+    .subpage-hero { padding: 120px 20px 42px; text-align: center; }
     .subpage-hero h1 { font-size: 2.5rem; margin-bottom: 20px; }
-    .kg-container { width: 100%; height: 75vh; border-radius: 16px; border: 1px solid var(--border); background: var(--bg-card); margin-bottom: 40px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+    .kg-shell { position: relative; z-index: 1; padding-bottom: 72px; }
+    .kg-toolbar, .kg-stage, .kg-panel {
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: rgba(15,25,35,0.7);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--card-shadow);
+    }
+    [data-theme="light"] .kg-toolbar,
+    [data-theme="light"] .kg-stage,
+    [data-theme="light"] .kg-panel { background: rgba(255,255,255,0.88); }
+    .kg-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: end;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .kg-navdeck {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .kg-navgroup {
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(15,25,35,0.7);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--card-shadow);
+    }
+    [data-theme="light"] .kg-navgroup { background: rgba(255,255,255,0.88); }
+    .kg-navlabel {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--text2);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .kg-module-tabs,
+    .kg-week-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .kg-search {
+      flex: 1 1 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .kg-search label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: var(--text2);
+      text-transform: uppercase;
+    }
+    .kg-search input {
+      width: 100%;
+      height: 48px;
+      padding: 0 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border2);
+      background: var(--bg3);
+      color: var(--text);
+      font: inherit;
+    }
+    .kg-search input::placeholder { color: var(--text3); }
+    .kg-search input:focus {
+      outline: none;
+      border-color: var(--emerald);
+      box-shadow: var(--focus-ring);
+    }
+    .kg-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      flex: 1 1 280px;
+    }
+    .kg-chip {
+      border: 1px solid var(--border2);
+      background: transparent;
+      color: var(--text2);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .kg-chip:hover { border-color: var(--emerald); color: var(--text); }
+    .kg-chip.active {
+      color: #fff;
+      border-color: transparent;
+      background: var(--grad-accent);
+      box-shadow: var(--btn-shadow);
+    }
+    .kg-mini-chip {
+      min-height: 42px;
+      border: 1px solid var(--border2);
+      background: transparent;
+      color: var(--text2);
+      border-radius: 14px;
+      padding: 10px 14px;
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .kg-mini-chip:hover {
+      border-color: var(--emerald);
+      color: var(--text);
+    }
+    .kg-mini-chip.active {
+      color: #fff;
+      border-color: transparent;
+      background: var(--grad-hero);
+      box-shadow: var(--btn-shadow);
+    }
+    .kg-week-btn {
+      min-width: 58px;
+      text-align: center;
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+    .kg-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-left: auto;
+    }
+    .kg-status { font-size: 0.9rem; color: var(--text2); }
+    .ghost-btn, .quick-btn {
+      border: 1px solid var(--border2);
+      background: var(--bg3);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 16px;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .ghost-btn:hover, .quick-btn:hover {
+      border-color: var(--emerald);
+      color: var(--emerald);
+    }
+    .kg-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(320px, 380px);
+      gap: 24px;
+      align-items: start;
+    }
+    .kg-stage { position: relative; padding: 18px; overflow: hidden; }
+    .kg-container {
+      width: 100%;
+      height: 72vh;
+      min-height: 560px;
+      border-radius: 18px;
+      border: 1px solid rgba(148,163,184,0.16);
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.12), transparent 36%),
+        radial-gradient(circle at bottom right, rgba(16,185,129,0.1), transparent 40%),
+        rgba(6,13,18,0.18);
+    }
+    [data-theme="light"] .kg-container { background: rgba(255,255,255,0.42); }
+    .kg-overlay {
+      position: absolute;
+      inset: 18px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      border-radius: 18px;
+      background: rgba(6,13,18,0.78);
+      border: 1px dashed rgba(148,163,184,0.26);
+      z-index: 2;
+    }
+    [data-theme="light"] .kg-overlay { background: rgba(255,255,255,0.88); }
+    .kg-overlay.visible { display: flex; }
+    .kg-overlay h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .kg-overlay p { color: var(--text2); max-width: 320px; }
+    .kg-hintbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .kg-hint {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      color: var(--text2);
+      background: rgba(148,163,184,0.08);
+      border: 1px solid rgba(148,163,184,0.14);
+    }
+    .kg-panel {
+      position: sticky;
+      top: 84px;
+      padding: 24px;
+      min-height: 540px;
+    }
+    .panel-kicker {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--emerald);
+      background: rgba(16,185,129,0.12);
+      border: 1px solid rgba(16,185,129,0.24);
+    }
+    .panel-title {
+      margin-top: 14px;
+      font-size: 1.82rem;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+    .panel-summary { margin-top: 12px; color: var(--text2); line-height: 1.72; }
+    .panel-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .panel-metric {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.14);
+      background: rgba(148,163,184,0.08);
+    }
+    .panel-metric span {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .panel-metric strong { color: var(--text); font-size: 1.1rem; }
+    .panel-section {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(148,163,184,0.14);
+    }
+    .panel-section h3 {
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text2);
+      margin-bottom: 10px;
+    }
+    .panel-section p { color: var(--text); line-height: 1.74; }
+    .panel-tags, .panel-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .panel-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: var(--text2);
+      background: rgba(148,163,184,0.08);
+      border: 1px solid rgba(148,163,184,0.14);
+    }
+    .relation-btn {
+      width: 100%;
+      text-align: left;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.14);
+      background: rgba(148,163,184,0.08);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .relation-btn:hover {
+      border-color: var(--emerald);
+      background: rgba(16,185,129,0.08);
+    }
+    .relation-btn strong, .relation-btn span { display: block; }
+    .relation-btn span { color: var(--text2); font-size: 0.84rem; margin-top: 4px; }
+    .panel-code {
+      margin: 0;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.14);
+      background: rgba(6,13,18,0.72);
+      color: #d9f99d;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.65;
+      white-space: pre;
+    }
+    [data-theme="light"] .panel-code { background: #f7fafc; color: #0f172a; }
+    @media (max-width: 1080px) {
+      .kg-layout { grid-template-columns: 1fr; }
+      .kg-panel { position: static; min-height: auto; }
+    }
+    @media (max-width: 768px) {
+      .subpage-hero { padding: 96px 16px 32px; }
+      .subpage-hero h1 { font-size: 2rem; }
+      .kg-toolbar, .kg-navgroup, .kg-stage, .kg-panel { padding: 18px; }
+      .kg-container { height: 56vh; min-height: 420px; }
+      .kg-actions {
+        width: 100%;
+        justify-content: space-between;
+        margin-left: 0;
+      }
+    }
+    @media (max-width: 520px) {
+      .kg-container { height: 50vh; min-height: 360px; }
+      .kg-chip { width: 100%; }
+      .ghost-btn { width: 100%; }
+      .panel-metrics { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-<!-- Animated Background -->
 <div class="bg-grid" aria-hidden="true"></div>
 <div class="bg-glow bg-glow-1" aria-hidden="true"></div><div class="bg-glow bg-glow-2" aria-hidden="true"></div><div class="bg-glow bg-glow-3" aria-hidden="true"></div>
 
-<!-- Navbar -->
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <div class="nav-brand"><a href="index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:8px"><div class="nav-logo">🐍</div><span>基础编程</span></a></div>
+    <button class="hamburger" id="hamburger" aria-label="切换导航菜单" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">← 返回主页</a>
       <a href="knowledge-graph.html" class="active">知识图谱</a>
@@ -40,109 +372,86 @@
     <div class="container">
       <div class="section-label">🌌 Knowledge Graph</div>
       <h1>编程与传媒 <span class="accent">概念映射图谱</span></h1>
-      <p class="subtitle" style="max-width: 600px; margin: 0 auto;">打通底层代码语法与高层新闻传播业务场景的逻辑桥梁。点击节点查看详细映射与典型应用场景。</p>
+      <p class="subtitle" style="max-width:760px; margin:0 auto;">现在这张图覆盖了课程五个模块和 16 周主线。你可以点击节点、查看关系、按类别筛选、搜索关键词，并在右侧看到它对应的课程周次、模块位置与传播应用场景。</p>
     </div>
   </section>
 
-  <section class="container">
-    <div id="echarts-graph" class="kg-container"></div>
+  <section class="container kg-shell">
+    <div class="kg-toolbar">
+      <div class="kg-search">
+        <label for="nodeSearch">搜索概念</label>
+        <input id="nodeSearch" type="search" autocomplete="off" placeholder="例如：字典、JSON、标题、情感、爬取">
+      </div>
+      <div class="kg-filters" id="categoryFilters" aria-label="图谱筛选">
+        <button class="kg-chip active" data-filter="all" aria-pressed="true" type="button">全部概念</button>
+        <button class="kg-chip" data-filter="syntax" aria-pressed="false" type="button">基础语法</button>
+        <button class="kg-chip" data-filter="data" aria-pressed="false" type="button">数据结构</button>
+        <button class="kg-chip" data-filter="tool" aria-pressed="false" type="button">工具平台</button>
+        <button class="kg-chip" data-filter="scenario" aria-pressed="false" type="button">传媒场景</button>
+      </div>
+      <div class="kg-actions">
+        <div class="kg-status" id="graphStatus">显示全部节点与关系。</div>
+        <button class="ghost-btn" id="resetGraph" type="button">重置视图</button>
+      </div>
+    </div>
+
+    <div class="kg-navdeck">
+      <div class="kg-navgroup">
+        <div class="kg-navlabel">按模块浏览</div>
+        <div class="kg-module-tabs" id="moduleTabs">
+          <button class="kg-mini-chip active" data-module="all" aria-pressed="true" type="button">全部模块</button>
+          <button class="kg-mini-chip" data-module="m1" aria-pressed="false" type="button">模块一</button>
+          <button class="kg-mini-chip" data-module="m2" aria-pressed="false" type="button">模块二</button>
+          <button class="kg-mini-chip" data-module="m3" aria-pressed="false" type="button">模块三</button>
+          <button class="kg-mini-chip" data-module="m4" aria-pressed="false" type="button">模块四</button>
+          <button class="kg-mini-chip" data-module="m5" aria-pressed="false" type="button">模块五</button>
+        </div>
+      </div>
+      <div class="kg-navgroup">
+        <div class="kg-navlabel">按周次浏览</div>
+        <div class="kg-week-grid" id="weekTabs">
+          <button class="kg-mini-chip kg-week-btn active" data-week="all" aria-pressed="true" type="button">全部</button>
+          <button class="kg-mini-chip kg-week-btn" data-week="1" aria-pressed="false" type="button">W1</button>
+          <button class="kg-mini-chip kg-week-btn" data-week="2" aria-pressed="false" type="button">W2</button>
+          <button class="kg-mini-chip kg-week-btn" data-week="3" aria-pressed="false" type="button">W3</button>
+          <button class="kg-mini-chip kg-week-btn" data-week="4" aria-pressed="false" type="button">W4</button>
+          <button class="kg-mini-chip kg-week-btn" data-week="5" aria-pressed="false" type="button">W5</button>
+          <button class="kg-mini-chip kg-week-btn" data-week="6" aria-pressed="false" type="button">W6</button>
+          <button class="kg-mini-chip kg-week-btn" data-week="7" aria-pressed="false" type="button">W7</button>
+          <button class="kg-mini-chip kg-week-btn" data-week="8" aria-pressed="false" type="button">W8</button>
+          <button class="kg-mini-chip kg-week-btn" data-week="9" aria-pressed="false" type="button">W9</button>
+          <button class="kg-mini-chip kg-week-btn" data-week="10" aria-pressed="false" type="button">W10</button>
+          <button class="kg-mini-chip kg-week-btn" data-week="11" aria-pressed="false" type="button">W11</button>
+          <button class="kg-mini-chip kg-week-btn" data-week="12" aria-pressed="false" type="button">W12</button>
+          <button class="kg-mini-chip kg-week-btn" data-week="13" aria-pressed="false" type="button">W13</button>
+          <button class="kg-mini-chip kg-week-btn" data-week="14" aria-pressed="false" type="button">W14</button>
+          <button class="kg-mini-chip kg-week-btn" data-week="15" aria-pressed="false" type="button">W15</button>
+          <button class="kg-mini-chip kg-week-btn" data-week="16" aria-pressed="false" type="button">W16</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="kg-layout">
+      <div class="kg-stage">
+        <div id="echarts-graph" class="kg-container"></div>
+        <div id="graphOverlay" class="kg-overlay" aria-live="polite">
+          <div>
+            <h3>没有找到匹配概念</h3>
+            <p>试试输入“字典”“JSON”“情感”或点击“重置视图”回到全局图谱。</p>
+          </div>
+        </div>
+        <div class="kg-hintbar" aria-hidden="true">
+          <span class="kg-hint">点击节点看详情</span>
+          <span class="kg-hint">点击连线看映射关系</span>
+          <span class="kg-hint">支持拖拽、缩放、点空白取消选择</span>
+        </div>
+      </div>
+
+      <aside class="kg-panel" id="detailPanel" aria-live="polite"></aside>
+    </div>
   </section>
 </main>
 
-<script>
-  // Setup theme toggle for subpages
-  const themeToggle = document.getElementById("themeToggle");
-  const themeIcon = document.getElementById("themeIcon");
-  function applyTheme(isLight) {
-    document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
-    themeIcon.textContent = isLight ? '☀️' : '🌙';
-  }
-  const savedTheme = localStorage.getItem('theme');
-  let isLightMode = savedTheme === 'light';
-  applyTheme(isLightMode);
-  themeToggle.addEventListener('click', () => {
-    isLightMode = !isLightMode;
-    applyTheme(isLightMode);
-    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-    // Refresh chart theme
-    initGraph();
-  });
-
-  let myChart = null;
-
-  function initGraph() {
-    if (myChart) myChart.dispose();
-    const dom = document.getElementById('echarts-graph');
-    // Use darker text and colors in light mode, lighter in dark mode for ECharts
-    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-    const textColor = isLight ? '#1f2937' : '#e0e7ff';
-    const lineColor = isLight ? '#cbd5e1' : '#334155';
-
-    myChart = echarts.init(dom);
-
-    const categories = [
-      { name: 'Python语法实体 (Syntax)', itemStyle: { color: '#8b5cf6' } },
-      { name: '数据对象 (Data)', itemStyle: { color: '#0ea5e9' } },
-      { name: '新闻传播场景 (Scenario)', itemStyle: { color: '#10b981' } }
-    ];
-
-    const nodes = [
-      // Syntax
-      { id: '1', name: 'For 循环', category: 0, symbolSize: 50 },
-      { id: '2', name: '字典 (Dict)', category: 0, symbolSize: 50 },
-      { id: '3', name: '列表 (List)', category: 0, symbolSize: 50 },
-      { id: '4', name: '字符串操作', category: 0, symbolSize: 45 },
-      { id: '5', name: 'If/Else 条件', category: 0, symbolSize: 40 },
-      { id: '11', name: '正则表达式', category: 0, symbolSize: 45 },
-      // Data
-      { id: '6', name: 'JSON 数据', category: 1, symbolSize: 60 },
-      { id: '7', name: 'Pandas DataFrame', category: 1, symbolSize: 60 },
-      // Scenarios
-      { id: '8', name: '批量爬取微博/公众号', category: 2, symbolSize: 70 },
-      { id: '9', name: '社交媒体元数据解析', category: 2, symbolSize: 65 },
-      { id: '10', name: '新闻标题文本清洗', category: 2, symbolSize: 65 },
-      { id: '12', name: '受众情感词抽取', category: 2, symbolSize: 60 }
-    ];
-
-    const links = [
-      { source: '1', target: '8', label: { show: true, formatter: '实现自动化翻页' } },
-      { source: '2', target: '6', label: { show: true, formatter: '结构等价' } },
-      { source: '6', target: '9', label: { show: true, formatter: '存储点赞/转发' } },
-      { source: '2', target: '9', label: { show: true, formatter: '提取层级字段' } },
-      { source: '4', target: '10', label: { show: true, formatter: 'strip() 去除空白' } },
-      { source: '11', target: '10', label: { show: true, formatter: '过滤非中文字符' } },
-      { source: '3', target: '7', label: { show: true, formatter: '转换为数据序列' } },
-      { source: '5', target: '12', label: { show: true, formatter: '判定正负向极性' } },
-      { source: '1', target: '3', label: { show: true, formatter: '列表推导式' } }
-    ];
-
-    const option = {
-      backgroundColor: 'transparent',
-      tooltip: { formatter: '{b}' },
-      legend: [{ data: categories.map(a => a.name), textStyle: { color: textColor } }],
-      series: [{
-        type: 'graph',
-        layout: 'force',
-        animation: false,
-        label: { show: true, position: 'right', formatter: '{b}', color: textColor, fontSize: 13 },
-        draggable: true,
-        data: nodes,
-        categories: categories,
-        force: { edgeLength: 150, repulsion: 1000 },
-        edges: links,
-        lineStyle: { color: lineColor, width: 2, curveness: 0.1 },
-        edgeLabel: {
-          show: false, // hidden on default to avoid clutter, shows on hover usually
-          textStyle: { fontSize: 11, color: textColor }
-        }
-      }]
-    };
-    myChart.setOption(option);
-  }
-
-  // Handle resize
-  window.addEventListener('resize', () => { if(myChart) myChart.resize(); });
-  initGraph();
-</script>
+<script src="knowledge-graph.js"></script>
 </body>
 </html>
