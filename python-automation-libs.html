@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9个Python互联网自动化库 | 汕头大学《基础编程》</title>
+  <meta name="description" content="9个让代码长了手的Python库：表单填写、浏览器自动化、定时任务、邮件处理、数据采集全覆盖">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .subpage-hero{padding:120px 20px 60px;text-align:center}
+    .subpage-hero h1{font-size:2.5rem;margin-bottom:20px}
+    .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:20px;margin-top:32px}
+    .lib-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:28px 24px;backdrop-filter:blur(8px);transition:all .3s}
+    .lib-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:var(--card-shadow)}
+    .lib-num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:var(--grad-hero);color:#fff;font-weight:800;font-size:.9rem;margin-bottom:14px}
+    .lib-name{font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:4px}
+    .lib-tagline{font-size:.84rem;color:var(--emerald);font-weight:600;margin-bottom:12px}
+    .lib-desc{font-size:.84rem;color:var(--text2);line-height:1.7;margin-bottom:14px}
+    .lib-code{background:var(--code-bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;font-family:'JetBrains Mono',monospace;font-size:.76rem;line-height:1.7;color:var(--emerald);overflow-x:auto;margin-bottom:14px;white-space:pre}
+    .lib-meta{display:flex;gap:8px;flex-wrap:wrap}
+    .lib-tag{padding:3px 10px;border-radius:999px;font-size:.72rem;font-weight:600;border:1px solid var(--border);color:var(--text3)}
+    .lib-tag.scene{border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.08);color:var(--emerald)}
+    .lib-tag.warn{border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.08);color:var(--amber)}
+    .tip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:24px}
+    .tip-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:20px;backdrop-filter:blur(6px)}
+    .tip-card h4{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:8px}
+    .tip-card p{font-size:.82rem;color:var(--text2);line-height:1.7}
+    .pitfall-table{width:100%;border-collapse:collapse;margin:20px 0;min-width:600px}
+    .pitfall-table th,.pitfall-table td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);font-size:.84rem}
+    .pitfall-table th{color:var(--text3);font-weight:600;font-size:.74rem;text-transform:uppercase;letter-spacing:.5px}
+    .pitfall-table td{color:var(--text)}
+    .pitfall-table .wrong{color:var(--red)}
+    .pitfall-table .right{color:var(--emerald)}
+    .pitfall-table tbody tr:hover{background:rgba(16,185,129,.06)}
+    .scenario-box{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:28px 24px;margin-bottom:32px;backdrop-filter:blur(8px)}
+    .scenario-box blockquote{border-left:3px solid var(--purple);padding:12px 18px;margin:16px 0;background:rgba(139,92,246,.06);border-radius:0 10px 10px 0;font-size:.9rem;color:var(--text2);line-height:1.7}
+  </style>
+</head>
+<body>
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow bg-glow-1" aria-hidden="true"></div>
+<div class="bg-glow bg-glow-2" aria-hidden="true"></div>
+<div class="bg-glow bg-glow-3" aria-hidden="true"></div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="nav-brand"><a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:8px"><div class="nav-logo">🐍</div><span>基础编程</span></a></div>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">← 返回主页</a>
+      <a href="knowledge-graph.html">知识图谱</a>
+      <a href="snippet-gallery.html">代码片段</a>
+      <a href="prompt-engineering.html">AI防伪指南</a>
+      <a href="python-cheatsheet.html">Python速查</a>
+      <a href="python-automation-libs.html" class="active">自动化库</a>
+      <button class="theme-toggle" id="themeToggle"><div class="theme-toggle-knob" id="themeIcon">🌙</div></button>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content">
+  <section class="subpage-hero">
+    <div class="container">
+      <div class="section-label">🤖 Internet Automation</div>
+      <h1>9个Python <span class="accent">互联网自动化库</span></h1>
+      <p class="subtitle" style="max-width:680px;margin:0 auto">让你的代码像长了手一样——自动填表、截图、发消息、收邮件，甚至绕过API限制爬取数据。</p>
+    </div>
+  </section>
+
+  <section class="container" style="padding-top:24px;padding-bottom:40px">
+    <div class="alert alert-info" style="margin-bottom:32px">
+      <span class="alert-icon" aria-hidden="true">💡</span>
+      <div><strong>一句话理解</strong>：<code>requests</code> 和 <code>selenium</code> 是互联网自动化的"公交车"——能到，但慢、挤、费力。今天介绍的 9 个库，是为特定任务量身定做的"专车"——填表有专车、截图有专车、收邮件也有专车，上车即走，一行代码解决一个痛点。</div>
+    </div>
+
+    <!-- 9 Library Cards -->
+    <h2 class="section-title" style="margin-bottom:4px">🧰 <span class="gradient">九大神器</span></h2>
+    <p class="section-desc">每一款都能让你的代码自动完成原本需要手动操作的任务。</p>
+
+    <div class="lib-grid">
+
+      <!-- 1. MechanicalSoup -->
+      <article class="lib-card">
+        <div class="lib-num">1</div>
+        <div class="lib-name">MechanicalSoup</div>
+        <div class="lib-tagline">会填表的"乖浏览器"</div>
+        <div class="lib-desc">就像一个听话的实习生，你告诉他"打开登录页，填用户名密码，点提交"，他就照做，不会多开一个标签页。</div>
+        <div class="lib-code">import mechanicalsoup
+browser = mechanicalsoup.StatefulBrowser()
+browser.open("https://github.com/login")
+browser.select_form('form[action="/session"]')
+browser["login"] = "your_username"
+browser["password"] = "your_password"
+browser.submit_selected()
+print(browser.get_url())</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">表单提交</span>
+          <span class="lib-tag scene">简单登录</span>
+          <span class="lib-tag warn">⚠️ 不支持JS渲染</span>
+        </div>
+      </article>
+
+      <!-- 2. Pyppeteer -->
+      <article class="lib-card">
+        <div class="lib-num">2</div>
+        <div class="lib-name">Pyppeteer</div>
+        <div class="lib-tagline">头号Chrome手术刀</div>
+        <div class="lib-desc">Selenium像是开着卡车冲进商场，Pyppeteer则是派一个隐形人进去精准取货。首次运行会自动下载Chromium。</div>
+        <div class="lib-code">import asyncio
+from pyppeteer import launch
+async def screenshot():
+    browser = await launch(headless=True)
+    page = await browser.newPage()
+    await page.goto("https://news.ycombinator.com")
+    await page.screenshot({"path": "hn.png"})
+    await browser.close()
+asyncio.get_event_loop().run_until_complete(screenshot())</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">JS渲染页面</span>
+          <span class="lib-tag scene">截图自动化</span>
+          <span class="lib-tag warn">⚠️ 内存~200MB</span>
+        </div>
+      </article>
+
+      <!-- 3. Telethon -->
+      <article class="lib-card">
+        <div class="lib-num">3</div>
+        <div class="lib-name">Telethon</div>
+        <div class="lib-tagline">Telegram的"神级遥控器"</div>
+        <div class="lib-desc">别人用机器人（Bot）是点外卖，你用Telethon是直接接管了整个厨房。国内可参考 wechatpy 或飞书SDK。</div>
+        <div class="lib-code">from telethon import TelegramClient
+api_id = 12345
+api_hash = "your_api_hash"
+client = TelegramClient("anon", api_id, api_hash)
+async def main():
+    await client.start()
+    async for msg in client.iter_messages("me"):
+        print(msg.sender_id, msg.text)
+client.loop.run_until_complete(main())</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">消息自动化</span>
+          <span class="lib-tag scene">数据存档</span>
+          <span class="lib-tag warn">⚠️ 需API Key</span>
+        </div>
+      </article>
+
+      <!-- 4. huey -->
+      <article class="lib-card">
+        <div class="lib-num">4</div>
+        <div class="lib-name">huey</div>
+        <div class="lib-tagline">轻量级定时任务"自动巡航"</div>
+        <div class="lib-desc">你设定好"每隔5分钟检查一次网站状态"，它就像闹钟一样准时执行。比Celery轻量得多，但同样支持分布式。</div>
+        <div class="lib-code">from huey import RedisHuey
+import requests
+huey = RedisHuey('my_app')
+@huey.periodic_task(crontab(minute="*/5"))
+def ping_site():
+    r = requests.get("https://example.com")
+    print(f"Pinged: {r.status_code}")
+# 命令行：huey_consumer.py my_app.huey</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">定时任务</span>
+          <span class="lib-tag scene">监控巡检</span>
+          <span class="lib-tag">国内替代：函数计算FC</span>
+        </div>
+      </article>
+
+      <!-- 5. imbox -->
+      <article class="lib-card">
+        <div class="lib-num">5</div>
+        <div class="lib-name">imbox</div>
+        <div class="lib-tagline">把邮箱变成数据库</div>
+        <div class="lib-desc">你每天手动下载附件，它帮你自动归类、解析、存盘。适合自动下载发票、提取验证码、监控客服邮件。</div>
+        <div class="lib-code">from imbox import Imbox
+with Imbox("imap.gmail.com",
+           username="me@gmail.com",
+           password="mypassword",
+           ssl=True) as imbox:
+    for uid, msg in imbox.messages(unread=True):
+        print(msg.subject, msg.sent_from)</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">邮件自动化</span>
+          <span class="lib-tag scene">附件下载</span>
+          <span class="lib-tag warn">⚠️ 国内邮箱需授权码</span>
+        </div>
+      </article>
+
+      <!-- 6. scdl -->
+      <article class="lib-card">
+        <div class="lib-num">6</div>
+        <div class="lib-name">scdl</div>
+        <div class="lib-tagline">SoundCloud自动化下载器</div>
+        <div class="lib-desc">像一个DJ助手，你告诉它"我要这位艺术家的所有作品"，它就去整理成MP3文件。适合构建音频数据集。</div>
+        <div class="lib-code">import subprocess
+subprocess.run([
+    "scdl", "-l",
+    "https://soundcloud.com/artist/track",
+    "-p", "./downloads"
+])
+# 执行后下载音频到指定目录</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">音频采集</span>
+          <span class="lib-tag scene">语音预处理</span>
+          <span class="lib-tag warn">⚠️ 注意版权</span>
+        </div>
+      </article>
+
+      <!-- 7. Twint -->
+      <article class="lib-card">
+        <div class="lib-num">7</div>
+        <div class="lib-name">Twint</div>
+        <div class="lib-tagline">绕过Twitter API的"挖掘机"</div>
+        <div class="lib-desc">别人排队领号（申请API Key），你直接从后门进去翻数据。无API限制，但易被平台风控，需控制频率。</div>
+        <div class="lib-code">import twint
+c = twint.Config()
+c.Search = "python"
+c.Limit = 10
+c.Store_csv = True
+c.Output = "tweets.csv"
+twint.run.Search(c)
+# 生成tweets.csv</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">社交数据采集</span>
+          <span class="lib-tag warn">⚠️ 原版已停维</span>
+          <span class="lib-tag">国内参考：weibo-scraper</span>
+        </div>
+      </article>
+
+      <!-- 8. Playwright -->
+      <article class="lib-card">
+        <div class="lib-num">8</div>
+        <div class="lib-name">Playwright</div>
+        <div class="lib-tagline">跨浏览器自动化"三栖特工"</div>
+        <div class="lib-desc">Selenium是普通司机，Playwright是特技车手——还能同时开三辆车（Chromium、Firefox、WebKit）。比Selenium快约30%。</div>
+        <div class="lib-code">from playwright.sync_api import sync_playwright
+with sync_playwright() as p:
+    browser = p.firefox.launch(headless=False)
+    page = browser.new_page()
+    page.goto("https://example.com")
+    print(page.title())
+    browser.close()</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">UI自动化测试</span>
+          <span class="lib-tag scene">录制生成代码</span>
+          <span class="lib-tag scene">跨浏览器</span>
+        </div>
+      </article>
+
+      <!-- 9. youtube-search-python -->
+      <article class="lib-card">
+        <div class="lib-num">9</div>
+        <div class="lib-name">youtube-search-python</div>
+        <div class="lib-tagline">绕过YouTube API的"白嫖搜索"</div>
+        <div class="lib-desc">别人求着Google给API Key，你直接调用这个库像普通人搜索一样获取结果。适合构建教程推荐机器人。</div>
+        <div class="lib-code">from youtubesearchpython import VideosSearch
+videos = VideosSearch("python自动化", limit=3)
+results = videos.result()
+for video in results['result']:
+    print(video['title'], video['link'])</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">视频搜索</span>
+          <span class="lib-tag scene">数据采集</span>
+          <span class="lib-tag warn">⚠️ 非官方API</span>
+        </div>
+      </article>
+
+    </div><!-- /lib-grid -->
+  </section>
+
+  <!-- 避坑指南 -->
+  <section class="section-alt" style="padding:60px 32px">
+    <div class="container">
+      <div class="section-label">🚧 Pitfall Guide</div>
+      <h2 class="section-title">避坑指南 <span class="gradient">（90%的人会踩）</span></h2>
+      <div class="table-wrap" style="margin-top:20px">
+        <table class="pitfall-table">
+          <thead><tr><th>场景</th><th class="wrong">❌ 错误做法</th><th class="right">✅ 正确做法</th></tr></thead>
+          <tbody>
+            <tr><td>表单登录</td><td class="wrong">硬编码密码</td><td class="right">环境变量 + python-dotenv</td></tr>
+            <tr><td>定时任务</td><td class="wrong">while True: time.sleep()</td><td class="right">huey / celery / crontab</td></tr>
+            <tr><td>邮箱连接</td><td class="wrong">直接用邮箱密码</td><td class="right">IMAP授权码 / 应用专用密码</td></tr>
+            <tr><td>浏览器自动化</td><td class="wrong">无头模式直接上生产</td><td class="right">先 headless=False 调试</td></tr>
+            <tr><td>爬取社交平台</td><td class="wrong">忽略 robots.txt</td><td class="right">遵循协议，控制频率</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 国内实践 & 核心回顾 -->
+  <section style="padding:60px 32px">
+    <div class="container">
+      <div class="section-label">🇨🇳 Localization Tips</div>
+      <h2 class="section-title">国内互联网自动化 <span class="gradient">"三板斧"</span></h2>
+      <div class="tip-grid">
+        <article class="tip-card">
+          <h4>📱 微信生态</h4>
+          <p><code>itchat</code>（已失效）、<code>wxauto</code>（Windows版）、企业微信API——国内即时通讯自动化的主要入口。</p>
+        </article>
+        <article class="tip-card">
+          <h4>☁️ 云服务替代</h4>
+          <p>用<strong>函数计算（FC）</strong>替代huey，用<strong>OSS存储</strong>替代本地文件——免运维、按量计费。</p>
+        </article>
+        <article class="tip-card">
+          <h4>🛡️ 反爬对抗</h4>
+          <p>国内网站有更严格的风控，建议配合 <code>pyppeteer-stealth</code> 或 <code>playwright-stealth</code> 插件，并配置动态代理池。</p>
+        </article>
+      </div>
+
+      <h3 style="color:var(--text);margin:40px 0 16px;font-size:1.1rem">🎯 核心回顾</h3>
+      <div class="tip-grid">
+        <article class="tip-card">
+          <h4>🔧 选对工具</h4>
+          <p>简单表单 → MechanicalSoup；复杂交互 → Playwright；绕过API → Twint / search库</p>
+        </article>
+        <article class="tip-card">
+          <h4>⏰ 定时自动化</h4>
+          <p>huey 让你"写完脚本就忘"，邮件和任务调度一把抓</p>
+        </article>
+        <article class="tip-card">
+          <h4>🏠 国内落地</h4>
+          <p>环境变量、授权码、函数计算——让代码更健壮，也更符合国内运维习惯</p>
+        </article>
+      </div>
+
+      <div class="alert alert-warning" style="margin-top:32px">
+        <span class="alert-icon" aria-hidden="true">⚠️</span>
+        <div><strong>写在最后</strong>：自动化是一把双刃剑。你能用它帮同事自动下载发票，别人也可能用它刷流量、盗数据。技术无罪，但使用技术的人要有底线。</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>本网站为汕头大学《基础编程》课程教学资源，内容基于课程大纲 JOU2155B。</p>
+  <div class="footer-links">
+    <a href="index.html">课程主页</a>
+    <a href="https://icgma.github.io/Lingma-Intro/" target="_blank" rel="noopener noreferrer">Lingma IDE 指南</a>
+    <a href="https://docs.python.org/zh-cn/3/" target="_blank" rel="noopener noreferrer">Python 文档</a>
+  </div>
+  <p style="margin-top:12px;opacity:.5">&copy; 2026 汕头大学 · 长江新闻与传播学院 · CSS Lab</p>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="回到顶部">↑</button>
+
+<script>
+  const themeToggle=document.getElementById("themeToggle"),themeIcon=document.getElementById("themeIcon");
+  function applyTheme(t){document.documentElement.setAttribute("data-theme",t?"light":"dark");themeIcon.textContent=t?"☀️":"🌙"}
+  const savedTheme=localStorage.getItem("theme");let isLightMode=savedTheme==="light";applyTheme(isLightMode);
+  themeToggle.addEventListener("click",()=>{isLightMode=!isLightMode;applyTheme(isLightMode);localStorage.setItem("theme",isLightMode?"light":"dark")});
+  const navbar=document.getElementById("navbar");
+  window.addEventListener("scroll",()=>{navbar.classList.toggle("scrolled",window.scrollY>20)});
+  document.getElementById("scrollTop").addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+  window.addEventListener("scroll",()=>{document.getElementById("scrollTop").style.display=window.scrollY>400?"flex":"none"});
+</script>
+</body>
+</html>
