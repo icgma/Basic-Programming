@@ -309,8 +309,11 @@
   // Auto-highlight Current Teaching Week
   // ═══════════════════════════════════════════════════════════════
   function initCurrentWeek() {
-    const SEMESTER_START = new Date(CONFIG.SEMESTER_START);
-    const today = new Date();
+    // 用本地时间构造，避免 'YYYY-MM-DD' 被按 UTC 解析造成的当日切换偏移
+    const parts = String(CONFIG.SEMESTER_START).split('-').map(Number);
+    const SEMESTER_START = new Date(parts[0], (parts[1] || 1) - 1, parts[2] || 1);
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const diffMs = today - SEMESTER_START;
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
     const currentWeek = Math.floor(diffDays / 7) + 1;
@@ -332,7 +335,21 @@
           phase.setAttribute('aria-current', 'true');
         }
       });
+    } else if (currentWeek > CONFIG.TOTAL_WEEKS) {
+      // Semester ended — show stale banner
+      showSemesterEndedBanner(currentWeek);
     }
+  }
+
+  function showSemesterEndedBanner(currentWeek) {
+    if (document.getElementById('semesterBanner')) return;
+    const banner = document.createElement('div');
+    banner.id = 'semesterBanner';
+    banner.setAttribute('role', 'status');
+    banner.style.cssText = 'position:fixed;top:64px;left:50%;transform:translateX(-50%);z-index:90;max-width:min(680px,calc(100vw - 32px));padding:10px 18px;border-radius:12px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.35);color:var(--text);font-size:.88rem;line-height:1.5;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;align-items:center;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.18)';
+    banner.innerHTML = '<span style="flex:1">本学期 16 周课程已结束（当前为第 ' + currentWeek + ' 周）。课程资源仍可继续使用。</span><button type="button" aria-label="关闭提示" style="background:none;border:none;color:var(--text2);cursor:pointer;font-size:1.1rem;padding:0 4px;line-height:1">×</button>';
+    banner.querySelector('button').addEventListener('click', function() { banner.remove(); });
+    document.body.appendChild(banner);
   }
 
   // ═══════════════════════════════════════════════════════════════
@@ -355,18 +372,5 @@
   } else {
     init();
   }
-
-  // Expose toggleWeek for backward compatibility (deprecated)
-  window.toggleWeek = function(card) {
-    console.warn('toggleWeek() is deprecated. Use keyboard/click interaction instead.');
-    const body = card.querySelector('.week-body');
-    if (body) {
-      const wasOpen = body.classList.contains('open');
-      document.querySelectorAll('.week-body').forEach(function(b) {
-        b.classList.remove('open');
-      });
-      if (!wasOpen) body.classList.add('open');
-    }
-  };
 
 })();

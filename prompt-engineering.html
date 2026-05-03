@@ -3,16 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){try{var t=localStorage.getItem('bp-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
   <title>AI防伪与学术鲁棒性指南 | 汕头大学《基础编程》</title>
+  <meta name="description" content="如何用结构化 Prompt 让 AI 输出工业级学术代码，识别并防范 AI 幻觉，守住学术诚信底线。">
+  <link rel="canonical" href="https://basic-programming.aisbest.eu.cc/prompt-engineering.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="AI 防伪与学术鲁棒性指南 | 汕头大学《基础编程》">
+  <meta property="og:description" content="结构化 Prompt 与防伪自查清单，让 AI 辅助编程不踩学术红线。">
+  <meta property="og:image" content="https://basic-programming.aisbest.eu.cc/assets/readme-preview.png">
+  <meta property="og:locale" content="zh_CN">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
   <style>
     .subpage-hero { padding: 120px 20px 60px; text-align: center; }
     .subpage-hero h1 { font-size: 2.5rem; margin-bottom: 20px; }
     .prompt-container { display: flex; flex-direction: column; gap: 40px; margin-bottom: 80px; }
-    .prompt-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: var(--shadow); }
+    .prompt-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: var(--card-shadow); backdrop-filter: blur(6px); }
     .prompt-card h2 { margin-top: 0; color: var(--text); border-bottom: 2px solid var(--border); padding-bottom: 10px; margin-bottom: 24px; }
     .bad-prompt { border-left: 4px solid var(--red); padding: 16px 20px; background: rgba(239, 68, 68, 0.05); margin-bottom: 20px; border-radius: 0 8px 8px 0; }
     .good-prompt { border-left: 4px solid var(--emerald); padding: 16px 20px; background: rgba(16, 185, 129, 0.05); margin-bottom: 20px; border-radius: 0 8px 8px 0; }
@@ -30,13 +39,17 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <div class="nav-brand"><a href="index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:8px"><div class="nav-logo">🐍</div><span>基础编程</span></a></div>
+    <button class="hamburger" id="hamburger" aria-label="切换导航菜单" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">← 返回主页</a>
       <a href="knowledge-graph.html">知识图谱</a>
       <a href="snippet-gallery.html">代码片段</a>
       <a href="prompt-engineering.html" class="active">AI防伪指南</a>
       <a href="python-cheatsheet.html">Python速查</a>
-      <button class="theme-toggle" id="themeToggle"><div class="theme-toggle-knob" id="themeIcon">🌙</div></button>
+      <a href="python-automation-libs.html">自动化库</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明亮/暗黑模式"><div class="theme-toggle-knob" id="themeIcon" aria-hidden="true">🌙</div></button>
     </div>
   </div>
 </nav>
@@ -132,22 +145,18 @@
   </section>
 </main>
 
-<script>
-  // Setup theme toggle for subpages
-  const themeToggle = document.getElementById("themeToggle");
-  const themeIcon = document.getElementById("themeIcon");
-  function applyTheme(isLight) {
-    document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
-    themeIcon.textContent = isLight ? '☀️' : '🌙';
-  }
-  const savedTheme = localStorage.getItem('theme');
-  let isLightMode = savedTheme === 'light';
-  applyTheme(isLightMode);
-  themeToggle.addEventListener('click', () => {
-    isLightMode = !isLightMode;
-    applyTheme(isLightMode);
-    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-  });
-</script>
+<footer class="footer">
+  <p>本网站为汕头大学《基础编程》课程教学资源，内容基于课程大纲 JOU2155B。</p>
+  <div class="footer-links">
+    <a href="index.html">课程主页</a>
+    <a href="https://icgma.github.io/Lingma-Intro/" target="_blank" rel="noopener noreferrer">Lingma IDE 指南</a>
+    <a href="https://docs.python.org/zh-cn/3/" target="_blank" rel="noopener noreferrer">Python 文档</a>
+  </div>
+  <p style="margin-top:12px;opacity:.5">&copy; <span data-year>2026</span> 汕头大学 · 长江新闻与传播学院 · CSS Lab</p>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="回到顶部">↑</button>
+
+<script src="nav.js"></script>
 </body>
 </html>

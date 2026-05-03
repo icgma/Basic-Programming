@@ -3,10 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){try{var t=localStorage.getItem('bp-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
   <title>9个Python互联网自动化库 | 汕头大学《基础编程》</title>
   <meta name="description" content="9个让代码长了手的Python库：表单填写、浏览器自动化、定时任务、邮件处理、数据采集全覆盖">
+  <link rel="canonical" href="https://basic-programming.aisbest.eu.cc/python-automation-libs.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="9 个 Python 互联网自动化库 | 汕头大学《基础编程》">
+  <meta property="og:description" content="表单填写、浏览器自动化、定时任务、邮件处理、数据采集——一行代码解决一个痛点。">
+  <meta property="og:image" content="https://basic-programming.aisbest.eu.cc/assets/readme-preview.png">
+  <meta property="og:locale" content="zh_CN">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
   <style>
@@ -48,6 +56,9 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <div class="nav-brand"><a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:8px"><div class="nav-logo">🐍</div><span>基础编程</span></a></div>
+    <button class="hamburger" id="hamburger" aria-label="切换导航菜单" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">← 返回主页</a>
       <a href="knowledge-graph.html">知识图谱</a>
@@ -116,7 +127,7 @@ async def screenshot():
     await page.goto("https://news.ycombinator.com")
     await page.screenshot({"path": "hn.png"})
     await browser.close()
-asyncio.get_event_loop().run_until_complete(screenshot())</div>
+asyncio.run(screenshot())</div>
         <div class="lib-meta">
           <span class="lib-tag scene">JS渲染页面</span>
           <span class="lib-tag scene">截图自动化</span>
@@ -152,7 +163,7 @@ client.loop.run_until_complete(main())</div>
         <div class="lib-name">huey</div>
         <div class="lib-tagline">轻量级定时任务"自动巡航"</div>
         <div class="lib-desc">你设定好"每隔5分钟检查一次网站状态"，它就像闹钟一样准时执行。比Celery轻量得多，但同样支持分布式。</div>
-        <div class="lib-code">from huey import RedisHuey
+        <div class="lib-code">from huey import RedisHuey, crontab
 import requests
 huey = RedisHuey('my_app')
 @huey.periodic_task(crontab(minute="*/5"))
@@ -223,7 +234,7 @@ twint.run.Search(c)
 # 生成tweets.csv</div>
         <div class="lib-meta">
           <span class="lib-tag scene">社交数据采集</span>
-          <span class="lib-tag warn">⚠️ 原版已停维</span>
+          <span class="lib-tag warn">⚠️ 已不可用，仅作历史参考</span>
           <span class="lib-tag">国内参考：weibo-scraper</span>
         </div>
       </article>
@@ -340,20 +351,11 @@ for video in results['result']:
     <a href="https://icgma.github.io/Lingma-Intro/" target="_blank" rel="noopener noreferrer">Lingma IDE 指南</a>
     <a href="https://docs.python.org/zh-cn/3/" target="_blank" rel="noopener noreferrer">Python 文档</a>
   </div>
-  <p style="margin-top:12px;opacity:.5">&copy; 2026 汕头大学 · 长江新闻与传播学院 · CSS Lab</p>
+  <p style="margin-top:12px;opacity:.5">&copy; <span data-year>2026</span> 汕头大学 · 长江新闻与传播学院 · CSS Lab</p>
 </footer>
 
 <button class="scroll-top" id="scrollTop" aria-label="回到顶部">↑</button>
 
-<script>
-  const themeToggle=document.getElementById("themeToggle"),themeIcon=document.getElementById("themeIcon");
-  function applyTheme(t){document.documentElement.setAttribute("data-theme",t?"light":"dark");themeIcon.textContent=t?"☀️":"🌙"}
-  const savedTheme=localStorage.getItem("theme");let isLightMode=savedTheme==="light";applyTheme(isLightMode);
-  themeToggle.addEventListener("click",()=>{isLightMode=!isLightMode;applyTheme(isLightMode);localStorage.setItem("theme",isLightMode?"light":"dark")});
-  const navbar=document.getElementById("navbar");
-  window.addEventListener("scroll",()=>{navbar.classList.toggle("scrolled",window.scrollY>20)});
-  document.getElementById("scrollTop").addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
-  window.addEventListener("scroll",()=>{document.getElementById("scrollTop").style.display=window.scrollY>400?"flex":"none"});
-</script>
+<script src="nav.js"></script>
 </body>
 </html>

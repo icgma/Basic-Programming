@@ -1321,7 +1321,10 @@
 
   function renderStatus(view) {
     const parts = [`显示 ${view.nodes.length} 个节点 / ${view.links.length} 条关系`];
-    if (state.filter !== 'all') parts.push(`筛选：${categoryMap.get(state.filter).name}`);
+    if (state.filter !== 'all') {
+      const cat = categoryMap.get(state.filter);
+      parts.push(`筛选：${cat ? cat.name : state.filter}`);
+    }
     if (state.module !== 'all') parts.push(`模块：${moduleMap.get(state.module).title}`);
     if (state.week !== 'all') parts.push(`周次：W${state.week}`);
     if (state.search.trim()) parts.push(`搜索：“${state.search.trim()}”`);
@@ -1386,6 +1389,8 @@
     state.search = '';
     els.search.value = '';
     clearSelection();
+    // 让 ECharts 重新计算力导向布局，避免拖动后节点漂出画布
+    try { chart.dispatchAction({ type: 'restore' }); } catch (e) {}
     render();
   }
 
@@ -1465,6 +1470,14 @@
     });
 
     window.addEventListener('resize', () => chart.resize());
+
+    // 监听容器尺寸变化（侧栏折叠、字体加载完成等场景），比 window resize 更稳
+    if (typeof ResizeObserver !== 'undefined') {
+      try {
+        const ro = new ResizeObserver(() => chart.resize());
+        ro.observe(els.chart);
+      } catch (e) {}
+    }
   }
 
   window.__kg = {

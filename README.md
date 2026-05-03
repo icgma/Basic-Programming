@@ -8,7 +8,9 @@
     <img src="https://img.shields.io/badge/HTML-5-e34f26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML">
     <img src="https://img.shields.io/badge/CSS-3-1572b6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS">
     <img src="https://img.shields.io/badge/JavaScript-Vanilla-f7df1e?style=for-the-badge&logo=javascript&logoColor=111111" alt="JavaScript">
+    <img src="https://img.shields.io/badge/ECharts-5.5-aa344d?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="ECharts">
     <img src="https://img.shields.io/badge/Deploy-GitHub%20Pages-222222?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Pages">
+    <img src="https://img.shields.io/badge/License-MIT-10b981?style=for-the-badge" alt="MIT License">
   </p>
   <p>
     <a href="https://basic-programming.aisbest.eu.cc/"><strong>在线访问</strong></a>
@@ -78,12 +80,19 @@ http://localhost:8000
 
 ```text
 .
-├── assets/
-│   └── readme-preview.png
+├── assets/                       # 图片与素材
+├── scripts/                      # 辅助脚本
 ├── CNAME
-├── index.html
-├── index.css
-├── main.js
+├── index.html                    # 课程首页
+├── index.css                     # 全站样式
+├── main.js                       # 首页交互（主题、周卡、FAQ、当前周）
+├── nav.js                        # 子页面共享导航与主题脚本
+├── knowledge-graph.html          # 编程-传媒知识图谱（ECharts）
+├── knowledge-graph.js
+├── snippet-gallery.html          # 学术与新闻代码片段库
+├── prompt-engineering.html       # AI 防伪与学术鲁棒性指南
+├── python-cheatsheet.html        # Python 初学者速查手册
+├── python-automation-libs.html   # 9 个 Python 互联网自动化库
 └── README.md
 ```
 
@@ -91,9 +100,15 @@ http://localhost:8000
 
 | 文件 | 作用 |
 | --- | --- |
-| `index.html` | 页面主体内容，包含课程介绍、周次安排、项目说明和 FAQ |
+| `index.html` | 课程首页：课程介绍、16 周进度、考核、期末项目、FAQ |
 | `index.css` | 整体视觉系统、响应式布局、明暗主题与组件样式 |
-| `main.js` | 主题切换、周卡折叠、FAQ 展开、滚动效果、当前教学周高亮 |
+| `main.js` | 首页交互：主题切换、周卡折叠、FAQ、滚动效果、当前教学周高亮 |
+| `nav.js` | 所有子页面共用的主题切换 + 移动端汉堡菜单 + 滚动行为 |
+| `knowledge-graph.{html,js}` | 编程-传媒核心概念知识图谱，基于 ECharts 力导向布局 |
+| `snippet-gallery.html` | 数据新闻与计算传播学常用代码片段库 |
+| `prompt-engineering.html` | AI 辅助编程的"防伪"与学术鲁棒性指南 |
+| `python-cheatsheet.html` | Python 初学者速查手册（语法、内置函数、常见错误） |
+| `python-automation-libs.html` | 9 个互联网自动化库速览与避坑指南 |
 | `CNAME` | GitHub Pages 自定义域名配置 |
 
 ## 维护要点

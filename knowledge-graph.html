@@ -3,12 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){try{var t=localStorage.getItem('bp-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
   <title>编程-传媒核心概念知识图谱 | 汕头大学《基础编程》</title>
+  <meta name="description" content="把课程的编程概念与传媒研究方法关联起来的可交互知识图谱：节点点击、模块/周次筛选、关系高亮。">
+  <link rel="canonical" href="https://basic-programming.aisbest.eu.cc/knowledge-graph.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="编程-传媒核心概念知识图谱 | 汕头大学《基础编程》">
+  <meta property="og:description" content="可交互的力导向知识图谱，帮你把 16 周课程内容串成一张网。">
+  <meta property="og:image" content="https://basic-programming.aisbest.eu.cc/assets/readme-preview.png">
+  <meta property="og:locale" content="zh_CN">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" integrity="sha384-o5uz97et3bErHvpKfD4Jz4n0JfhJDWABFuF4NP+iEEDxE1VwMWJ19QGR0lqFZnr6" crossorigin="anonymous"></script>
   <style>
     .subpage-hero { padding: 120px 20px 42px; text-align: center; }
     .subpage-hero h1 { font-size: 2.5rem; margin-bottom: 20px; }
@@ -385,6 +394,7 @@
       <a href="knowledge-graph.html" class="active">知识图谱</a>
       <a href="snippet-gallery.html">代码片段</a>
       <a href="prompt-engineering.html">AI防伪指南</a>
+      <a href="python-automation-libs.html">自动化库</a>
       <a href="python-cheatsheet.html">Python速查</a>
       <button class="theme-toggle" id="themeToggle"><div class="theme-toggle-knob" id="themeIcon">🌙</div></button>
     </div>
@@ -475,6 +485,18 @@
     </div>
   </section>
 </main>
+
+<footer class="footer">
+  <p>本网站为汕头大学《基础编程》课程教学资源，内容基于课程大纲 JOU2155B。</p>
+  <div class="footer-links">
+    <a href="index.html">课程主页</a>
+    <a href="https://icgma.github.io/Lingma-Intro/" target="_blank" rel="noopener noreferrer">Lingma IDE 指南</a>
+    <a href="https://docs.python.org/zh-cn/3/" target="_blank" rel="noopener noreferrer">Python 文档</a>
+  </div>
+  <p style="margin-top:12px;opacity:.5">&copy; <span data-year>2026</span> 汕头大学 · 长江新闻与传播学院 · CSS Lab</p>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="回到顶部">↑</button>
 
 <script src="knowledge-graph.js"></script>
 </body>

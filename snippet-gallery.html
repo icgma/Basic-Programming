@@ -3,9 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){try{var t=localStorage.getItem('bp-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
   <title>学术与新闻：代码实战片段库 | 汕头大学《基础编程》</title>
+  <meta name="description" content="数据新闻与计算传播学常用代码片段库：可一键复制的 Python 模板，覆盖采集、清洗、分析与可视化。">
+  <link rel="canonical" href="https://basic-programming.aisbest.eu.cc/snippet-gallery.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="学术与新闻代码实战片段库 | 汕头大学《基础编程》">
+  <meta property="og:description" content="可一键复制的高频 Python 数据新闻与计算传播学代码模板。">
+  <meta property="og:image" content="https://basic-programming.aisbest.eu.cc/assets/readme-preview.png">
+  <meta property="og:locale" content="zh_CN">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="index.css">
@@ -37,13 +46,17 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <div class="nav-brand"><a href="index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:8px"><div class="nav-logo">🐍</div><span>基础编程</span></a></div>
+    <button class="hamburger" id="hamburger" aria-label="切换导航菜单" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">← 返回主页</a>
       <a href="knowledge-graph.html">知识图谱</a>
       <a href="snippet-gallery.html" class="active">代码片段</a>
       <a href="prompt-engineering.html">AI防伪指南</a>
       <a href="python-cheatsheet.html">Python速查</a>
-      <button class="theme-toggle" id="themeToggle"><div class="theme-toggle-knob" id="themeIcon">🌙</div></button>
+      <a href="python-automation-libs.html">自动化库</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明亮/暗黑模式"><div class="theme-toggle-knob" id="themeIcon" aria-hidden="true">🌙</div></button>
     </div>
   </div>
 </nav>
@@ -441,7 +454,7 @@ def clean_text(text):
     # 1. 剔除 HTML 标签 (例如 &lt;br&gt;, &lt;a&gt; 等)
     text = re.sub(r'&lt;[^&gt;]+&gt;', '', text)
     # 2. 剔除网页链接
-    text = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', text)
+    text = re.sub(r'https?://\S+', '', text)
     # 3. 剔除特殊符号，仅保留中文字符、英文字母和数字
     # text = re.sub(r'[^\\u4e00-\\u9fa5a-zA-Z0-9]', '', text) 
     
@@ -491,45 +504,20 @@ plt.show()</code></pre>
   </section>
 </main>
 
+<footer class="footer">
+  <p>本网站为汕头大学《基础编程》课程教学资源，内容基于课程大纲 JOU2155B。</p>
+  <div class="footer-links">
+    <a href="index.html">课程主页</a>
+    <a href="https://icgma.github.io/Lingma-Intro/" target="_blank" rel="noopener noreferrer">Lingma IDE 指南</a>
+    <a href="https://docs.python.org/zh-cn/3/" target="_blank" rel="noopener noreferrer">Python 文档</a>
+  </div>
+  <p style="margin-top:12px;opacity:.5">&copy; <span data-year>2026</span> 汕头大学 · 长江新闻与传播学院 · CSS Lab</p>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="回到顶部">↑</button>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-<script>
-  // Theme toggle
-  const themeToggle = document.getElementById("themeToggle");
-  const themeIcon = document.getElementById("themeIcon");
-  function applyTheme(isLight) {
-    document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
-    themeIcon.textContent = isLight ? '☀️' : '🌙';
-  }
-  const savedTheme = localStorage.getItem('theme');
-  let isLightMode = savedTheme === 'light';
-  applyTheme(isLightMode);
-  themeToggle.addEventListener('click', () => {
-    isLightMode = !isLightMode;
-    applyTheme(isLightMode);
-    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-  });
-
-  // Copy code logic
-  function copyCode(btn, codeId) {
-    const codeEl = document.getElementById(codeId);
-    navigator.clipboard.writeText(codeEl.innerText).then(() => {
-      const originalText = btn.innerText;
-      btn.innerText = '✅ 已复制';
-      btn.style.backgroundColor = 'var(--emerald)';
-      btn.style.color = '#fff';
-      setTimeout(() => {
-        btn.innerText = originalText;
-        btn.style.backgroundColor = '';
-        btn.style.color = '';
-      }, 2000);
-    });
-  }
-
-  // Navbar scroll
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
-  });
-</script>
+<script src="nav.js"></script>
 </body>
 </html>

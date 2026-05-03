@@ -3,10 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){try{var t=localStorage.getItem('bp-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
   <title>Python 初学者速查手册 | 汕头大学《基础编程》</title>
   <meta name="description" content="Python初学者完整速查手册：数据类型、运算符、内置函数、常见错误一网打尽">
+  <link rel="canonical" href="https://basic-programming.aisbest.eu.cc/python-cheatsheet.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Python 初学者速查手册 | 汕头大学《基础编程》">
+  <meta property="og:description" content="数据类型、运算符、内置函数、常见错误的完整速查手册。">
+  <meta property="og:image" content="https://basic-programming.aisbest.eu.cc/assets/readme-preview.png">
+  <meta property="og:locale" content="zh_CN">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
   <style>
@@ -94,13 +102,17 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <div class="nav-brand"><a href="index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:8px"><div class="nav-logo">🐍</div><span>基础编程</span></a></div>
+    <button class="hamburger" id="hamburger" aria-label="切换导航菜单" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">← 返回主页</a>
       <a href="knowledge-graph.html">知识图谱</a>
       <a href="snippet-gallery.html">代码片段</a>
       <a href="prompt-engineering.html">AI防伪指南</a>
       <a href="python-cheatsheet.html" class="active">Python速查</a>
-      <button class="theme-toggle" id="themeToggle"><div class="theme-toggle-knob" id="themeIcon">🌙</div></button>
+      <a href="python-automation-libs.html">自动化库</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明亮/暗黑模式"><div class="theme-toggle-knob" id="themeIcon" aria-hidden="true">🌙</div></button>
     </div>
   </div>
 </nav>
@@ -112,7 +124,8 @@
       <h1>Python 初学者 <span class="accent">速查手册</span></h1>
       <p class="subtitle" style="max-width: 650px; margin: 0 auto;">覆盖本课程全部 Python 核心语法。搜索关键词，快速定位你需要的知识点。</p>
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="搜索：print、列表、for循环、报错..." autocomplete="off">
+        <label for="searchInput" class="visually-hidden" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0">搜索 Python 速查内容</label>
+        <input type="text" id="searchInput" placeholder="搜索：print、列表、for循环、报错..." autocomplete="off" aria-label="搜索 Python 速查内容">
       </div>
       <div class="cat-tabs" id="catTabs">
         <button class="cat-tab active" data-cat="all">全部</button>
@@ -553,23 +566,20 @@ with open("out.json", "w", encoding="utf-8") as f:
   </section>
 </main>
 
-<script>
-  // Theme toggle
-  const themeToggle = document.getElementById("themeToggle");
-  const themeIcon = document.getElementById("themeIcon");
-  function applyTheme(isLight) {
-    document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
-    themeIcon.textContent = isLight ? '☀️' : '🌙';
-  }
-  const savedTheme = localStorage.getItem('theme');
-  let isLightMode = savedTheme === 'light';
-  applyTheme(isLightMode);
-  themeToggle.addEventListener('click', () => {
-    isLightMode = !isLightMode;
-    applyTheme(isLightMode);
-    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-  });
+<footer class="footer">
+  <p>本网站为汕头大学《基础编程》课程教学资源，内容基于课程大纲 JOU2155B。</p>
+  <div class="footer-links">
+    <a href="index.html">课程主页</a>
+    <a href="https://icgma.github.io/Lingma-Intro/" target="_blank" rel="noopener noreferrer">Lingma IDE 指南</a>
+    <a href="https://docs.python.org/zh-cn/3/" target="_blank" rel="noopener noreferrer">Python 文档</a>
+  </div>
+  <p style="margin-top:12px;opacity:.5">&copy; <span data-year>2026</span> 汕头大学 · 长江新闻与传播学院 · CSS Lab</p>
+</footer>
 
+<button class="scroll-top" id="scrollTop" aria-label="回到顶部">↑</button>
+
+<script src="nav.js"></script>
+<script>
   // Category filtering
   const catTabs = document.querySelectorAll('.cat-tab');
   const refSections = document.querySelectorAll('.ref-section');
@@ -587,27 +597,24 @@ with open("out.json", "w", encoding="utf-8") as f:
 
   // Search functionality
   const searchInput = document.getElementById('searchInput');
-  searchInput.addEventListener('input', () => {
-    const query = searchInput.value.toLowerCase().trim();
-    // Reset category tabs
-    catTabs.forEach(t => t.classList.remove('active'));
-    document.querySelector('[data-cat="all"]').classList.add('active');
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+      catTabs.forEach(t => t.classList.remove('active'));
+      const allTab = document.querySelector('[data-cat="all"]');
+      if (allTab) allTab.classList.add('active');
 
-    if (!query) {
-      refSections.forEach(sec => sec.classList.remove('hidden'));
-      return;
-    }
+      if (!query) {
+        refSections.forEach(sec => sec.classList.remove('hidden'));
+        return;
+      }
 
-    refSections.forEach(sec => {
-      const text = sec.textContent.toLowerCase();
-      sec.classList.toggle('hidden', !text.includes(query));
+      refSections.forEach(sec => {
+        const text = sec.textContent.toLowerCase();
+        sec.classList.toggle('hidden', !text.includes(query));
+      });
     });
-  });
-
-  // Navbar scroll effect
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
-  });
+  }
 </script>
 </body>
 </html>
