@@ -121,10 +121,18 @@
     });
   };
 
+  function initFooterYear() {
+    const year = String(new Date().getFullYear());
+    document.querySelectorAll('[data-year]').forEach(function(el) {
+      el.textContent = year;
+    });
+  }
+
   function init() {
     initTheme();
     initMobileNav();
     initScroll();
+    initFooterYear();
   }
 
   if (document.readyState === 'loading') {

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://basic-programming.aisbest.eu.cc/sitemap.xml

@@ -335,7 +335,21 @@
           phase.setAttribute('aria-current', 'true');
         }
       });
+    } else if (currentWeek > CONFIG.TOTAL_WEEKS) {
+      // Semester ended — show stale banner
+      showSemesterEndedBanner(currentWeek);
     }
+  }
+
+  function showSemesterEndedBanner(currentWeek) {
+    if (document.getElementById('semesterBanner')) return;
+    const banner = document.createElement('div');
+    banner.id = 'semesterBanner';
+    banner.setAttribute('role', 'status');
+    banner.style.cssText = 'position:fixed;top:64px;left:50%;transform:translateX(-50%);z-index:90;max-width:min(680px,calc(100vw - 32px));padding:10px 18px;border-radius:12px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.35);color:var(--text);font-size:.88rem;line-height:1.5;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;align-items:center;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.18)';
+    banner.innerHTML = '<span style="flex:1">本学期 16 周课程已结束（当前为第 ' + currentWeek + ' 周）。课程资源仍可继续使用。</span><button type="button" aria-label="关闭提示" style="background:none;border:none;color:var(--text2);cursor:pointer;font-size:1.1rem;padding:0 4px;line-height:1">×</button>';
+    banner.querySelector('button').addEventListener('click', function() { banner.remove(); });
+    document.body.appendChild(banner);
   }
 
   // ═══════════════════════════════════════════════════════════════

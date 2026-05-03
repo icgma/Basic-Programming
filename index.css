@@ -1018,3 +1018,31 @@ body, nav, .navbar, .bg-grid, .bg-glow,
   .grading-grid { grid-template-columns: 1fr; }
   .module-phases { grid-template-columns: 1fr; }
 }
+
+/* ───────────────────────── Print Styles ───────────────────────── */
+@media print {
+  :root {
+    --bg: #fff; --bg2: #fff; --text: #111; --text2: #333; --text3: #555;
+    --border: #ddd; --card-bg: #fff; --card-shadow: none;
+  }
+  html, body { background: #fff !important; color: #111 !important; }
+  .bg-grid, .bg-glow, .bg-glow-1, .bg-glow-2, .bg-glow-3,
+  .navbar, .scroll-top, .hamburger, .theme-toggle,
+  #semesterBanner, .copy-btn, .filter-bar, .week-filter,
+  .kg-toolbar, .kg-panel, .nav-links { display: none !important; }
+  main, .container, .subpage-hero { padding-top: 0 !important; }
+  a { color: #111 !important; text-decoration: underline; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; color: #555; }
+  .card, .week-card, .module-phase, .ref-section, .snippet-card,
+  .resource-card, .info-card, .feature-card {
+    break-inside: avoid; page-break-inside: avoid;
+    box-shadow: none !important; border: 1px solid #ccc !important;
+    background: #fff !important;
+  }
+  pre, code { background: #f5f5f5 !important; color: #111 !important;
+    border: 1px solid #ddd; white-space: pre-wrap; word-wrap: break-word; }
+  h1, h2, h3 { break-after: avoid; page-break-after: avoid; color: #111 !important; }
+  .footer { border-top: 1px solid #ccc; margin-top: 24px; padding-top: 12px;
+    color: #555 !important; font-size: 10pt; }
+  img { max-width: 100% !important; page-break-inside: avoid; }
+}

@@ -8,7 +8,9 @@
     <img src="https://img.shields.io/badge/HTML-5-e34f26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML">
     <img src="https://img.shields.io/badge/CSS-3-1572b6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS">
     <img src="https://img.shields.io/badge/JavaScript-Vanilla-f7df1e?style=for-the-badge&logo=javascript&logoColor=111111" alt="JavaScript">
+    <img src="https://img.shields.io/badge/ECharts-5.5-aa344d?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="ECharts">
     <img src="https://img.shields.io/badge/Deploy-GitHub%20Pages-222222?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Pages">
+    <img src="https://img.shields.io/badge/License-MIT-10b981?style=for-the-badge" alt="MIT License">
   </p>
   <p>
     <a href="https://basic-programming.aisbest.eu.cc/"><strong>在线访问</strong></a>
