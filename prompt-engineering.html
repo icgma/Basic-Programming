@@ -12,7 +12,7 @@
     .subpage-hero { padding: 120px 20px 60px; text-align: center; }
     .subpage-hero h1 { font-size: 2.5rem; margin-bottom: 20px; }
     .prompt-container { display: flex; flex-direction: column; gap: 40px; margin-bottom: 80px; }
-    .prompt-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: var(--shadow); }
+    .prompt-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: var(--card-shadow); backdrop-filter: blur(6px); }
     .prompt-card h2 { margin-top: 0; color: var(--text); border-bottom: 2px solid var(--border); padding-bottom: 10px; margin-bottom: 24px; }
     .bad-prompt { border-left: 4px solid var(--red); padding: 16px 20px; background: rgba(239, 68, 68, 0.05); margin-bottom: 20px; border-radius: 0 8px 8px 0; }
     .good-prompt { border-left: 4px solid var(--emerald); padding: 16px 20px; background: rgba(16, 185, 129, 0.05); margin-bottom: 20px; border-radius: 0 8px 8px 0; }
@@ -30,13 +30,17 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <div class="nav-brand"><a href="index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:8px"><div class="nav-logo">🐍</div><span>基础编程</span></a></div>
+    <button class="hamburger" id="hamburger" aria-label="切换导航菜单" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">← 返回主页</a>
       <a href="knowledge-graph.html">知识图谱</a>
       <a href="snippet-gallery.html">代码片段</a>
       <a href="prompt-engineering.html" class="active">AI防伪指南</a>
       <a href="python-cheatsheet.html">Python速查</a>
-      <button class="theme-toggle" id="themeToggle"><div class="theme-toggle-knob" id="themeIcon">🌙</div></button>
+      <a href="python-automation-libs.html">自动化库</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明亮/暗黑模式"><div class="theme-toggle-knob" id="themeIcon" aria-hidden="true">🌙</div></button>
     </div>
   </div>
 </nav>
@@ -132,22 +136,6 @@
   </section>
 </main>
 
-<script>
-  // Setup theme toggle for subpages
-  const themeToggle = document.getElementById("themeToggle");
-  const themeIcon = document.getElementById("themeIcon");
-  function applyTheme(isLight) {
-    document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
-    themeIcon.textContent = isLight ? '☀️' : '🌙';
-  }
-  const savedTheme = localStorage.getItem('theme');
-  let isLightMode = savedTheme === 'light';
-  applyTheme(isLightMode);
-  themeToggle.addEventListener('click', () => {
-    isLightMode = !isLightMode;
-    applyTheme(isLightMode);
-    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-  });
-</script>
+<script src="nav.js"></script>
 </body>
 </html>

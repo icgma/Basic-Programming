@@ -309,8 +309,11 @@
   // Auto-highlight Current Teaching Week
   // ═══════════════════════════════════════════════════════════════
   function initCurrentWeek() {
-    const SEMESTER_START = new Date(CONFIG.SEMESTER_START);
-    const today = new Date();
+    // 用本地时间构造，避免 'YYYY-MM-DD' 被按 UTC 解析造成的当日切换偏移
+    const parts = String(CONFIG.SEMESTER_START).split('-').map(Number);
+    const SEMESTER_START = new Date(parts[0], (parts[1] || 1) - 1, parts[2] || 1);
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const diffMs = today - SEMESTER_START;
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
     const currentWeek = Math.floor(diffDays / 7) + 1;
@@ -355,18 +358,5 @@
   } else {
     init();
   }
-
-  // Expose toggleWeek for backward compatibility (deprecated)
-  window.toggleWeek = function(card) {
-    console.warn('toggleWeek() is deprecated. Use keyboard/click interaction instead.');
-    const body = card.querySelector('.week-body');
-    if (body) {
-      const wasOpen = body.classList.contains('open');
-      document.querySelectorAll('.week-body').forEach(function(b) {
-        b.classList.remove('open');
-      });
-      if (!wasOpen) body.classList.add('open');
-    }
-  };
 
 })();

@@ -94,13 +94,17 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <div class="nav-brand"><a href="index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:8px"><div class="nav-logo">🐍</div><span>基础编程</span></a></div>
+    <button class="hamburger" id="hamburger" aria-label="切换导航菜单" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">← 返回主页</a>
       <a href="knowledge-graph.html">知识图谱</a>
       <a href="snippet-gallery.html">代码片段</a>
       <a href="prompt-engineering.html">AI防伪指南</a>
       <a href="python-cheatsheet.html" class="active">Python速查</a>
-      <button class="theme-toggle" id="themeToggle"><div class="theme-toggle-knob" id="themeIcon">🌙</div></button>
+      <a href="python-automation-libs.html">自动化库</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明亮/暗黑模式"><div class="theme-toggle-knob" id="themeIcon" aria-hidden="true">🌙</div></button>
     </div>
   </div>
 </nav>
@@ -553,23 +557,8 @@ with open("out.json", "w", encoding="utf-8") as f:
   </section>
 </main>
 
+<script src="nav.js"></script>
 <script>
-  // Theme toggle
-  const themeToggle = document.getElementById("themeToggle");
-  const themeIcon = document.getElementById("themeIcon");
-  function applyTheme(isLight) {
-    document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
-    themeIcon.textContent = isLight ? '☀️' : '🌙';
-  }
-  const savedTheme = localStorage.getItem('theme');
-  let isLightMode = savedTheme === 'light';
-  applyTheme(isLightMode);
-  themeToggle.addEventListener('click', () => {
-    isLightMode = !isLightMode;
-    applyTheme(isLightMode);
-    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-  });
-
   // Category filtering
   const catTabs = document.querySelectorAll('.cat-tab');
   const refSections = document.querySelectorAll('.ref-section');
@@ -587,27 +576,24 @@ with open("out.json", "w", encoding="utf-8") as f:
 
   // Search functionality
   const searchInput = document.getElementById('searchInput');
-  searchInput.addEventListener('input', () => {
-    const query = searchInput.value.toLowerCase().trim();
-    // Reset category tabs
-    catTabs.forEach(t => t.classList.remove('active'));
-    document.querySelector('[data-cat="all"]').classList.add('active');
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+      catTabs.forEach(t => t.classList.remove('active'));
+      const allTab = document.querySelector('[data-cat="all"]');
+      if (allTab) allTab.classList.add('active');
 
-    if (!query) {
-      refSections.forEach(sec => sec.classList.remove('hidden'));
-      return;
-    }
+      if (!query) {
+        refSections.forEach(sec => sec.classList.remove('hidden'));
+        return;
+      }
 
-    refSections.forEach(sec => {
-      const text = sec.textContent.toLowerCase();
-      sec.classList.toggle('hidden', !text.includes(query));
+      refSections.forEach(sec => {
+        const text = sec.textContent.toLowerCase();
+        sec.classList.toggle('hidden', !text.includes(query));
+      });
     });
-  });
-
-  // Navbar scroll effect
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
-  });
+  }
 </script>
 </body>
 </html>

@@ -37,13 +37,17 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <div class="nav-brand"><a href="index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:8px"><div class="nav-logo">🐍</div><span>基础编程</span></a></div>
+    <button class="hamburger" id="hamburger" aria-label="切换导航菜单" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">← 返回主页</a>
       <a href="knowledge-graph.html">知识图谱</a>
       <a href="snippet-gallery.html" class="active">代码片段</a>
       <a href="prompt-engineering.html">AI防伪指南</a>
       <a href="python-cheatsheet.html">Python速查</a>
-      <button class="theme-toggle" id="themeToggle"><div class="theme-toggle-knob" id="themeIcon">🌙</div></button>
+      <a href="python-automation-libs.html">自动化库</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明亮/暗黑模式"><div class="theme-toggle-knob" id="themeIcon" aria-hidden="true">🌙</div></button>
     </div>
   </div>
 </nav>
@@ -441,7 +445,7 @@ def clean_text(text):
     # 1. 剔除 HTML 标签 (例如 &lt;br&gt;, &lt;a&gt; 等)
     text = re.sub(r'&lt;[^&gt;]+&gt;', '', text)
     # 2. 剔除网页链接
-    text = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', text)
+    text = re.sub(r'https?://\S+', '', text)
     # 3. 剔除特殊符号，仅保留中文字符、英文字母和数字
     # text = re.sub(r'[^\\u4e00-\\u9fa5a-zA-Z0-9]', '', text) 
     
@@ -493,43 +497,6 @@ plt.show()</code></pre>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-<script>
-  // Theme toggle
-  const themeToggle = document.getElementById("themeToggle");
-  const themeIcon = document.getElementById("themeIcon");
-  function applyTheme(isLight) {
-    document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
-    themeIcon.textContent = isLight ? '☀️' : '🌙';
-  }
-  const savedTheme = localStorage.getItem('theme');
-  let isLightMode = savedTheme === 'light';
-  applyTheme(isLightMode);
-  themeToggle.addEventListener('click', () => {
-    isLightMode = !isLightMode;
-    applyTheme(isLightMode);
-    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-  });
-
-  // Copy code logic
-  function copyCode(btn, codeId) {
-    const codeEl = document.getElementById(codeId);
-    navigator.clipboard.writeText(codeEl.innerText).then(() => {
-      const originalText = btn.innerText;
-      btn.innerText = '✅ 已复制';
-      btn.style.backgroundColor = 'var(--emerald)';
-      btn.style.color = '#fff';
-      setTimeout(() => {
-        btn.innerText = originalText;
-        btn.style.backgroundColor = '';
-        btn.style.color = '';
-      }, 2000);
-    });
-  }
-
-  // Navbar scroll
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
-  });
-</script>
+<script src="nav.js"></script>
 </body>
 </html>
