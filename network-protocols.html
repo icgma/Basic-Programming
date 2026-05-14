@@ -110,6 +110,65 @@
         </div>
       </article>
 
+      <!-- Section 5 -->
+      <article class="protocol-card">
+        <h2>5. URL 结构剖析 (统一资源定位符)</h2>
+        <p style="margin-bottom: 20px; color: var(--text-muted); line-height:1.6;">了解 URL 的组成部分，有助于在爬虫中精确构造请求目标和传递参数。</p>
+        
+        <div class="protocol-detail">
+          <div style="font-weight: 700; margin-bottom: 8px;">标准格式：<code style="background: var(--bg); padding: 4px; border-radius: 4px; font-weight: 400;">scheme://host:port/path?query#fragment</code></div>
+          <ul style="margin: 0; padding-left: 20px; line-height: 1.6;">
+            <li><strong>Scheme (协议)：</strong>指明如何访问资源，如 <code style="background: var(--bg); padding: 2px 4px; border-radius: 4px;">http</code> 或 <code style="background: var(--bg); padding: 2px 4px; border-radius: 4px;">https</code>。</li>
+            <li><strong>Host (主机)：</strong>存放资源的服务器域名系统 (DNS) 主机名或 IP 地址。</li>
+            <li><strong>Path (路径)：</strong>由零或多个“/”符号隔开的字符串，用来表示主机上的一个目录或文件地址。</li>
+            <li><strong>Query (查询字符串)：</strong>通过 GET 方式请求时传递的参数，通常以 <code style="background: var(--bg); padding: 2px 4px; border-radius: 4px;">?</code> 开始，键值对用 <code style="background: var(--bg); padding: 2px 4px; border-radius: 4px;">&amp;</code> 分隔（如 <code style="background: var(--bg); padding: 2px 4px; border-radius: 4px;">?page=2&amp;sort=desc</code>）。</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Section 6 -->
+      <article class="protocol-card">
+        <h2>6. 核心请求头 (HTTP Headers)</h2>
+        <p style="margin-bottom: 20px; color: var(--text-muted); line-height:1.6;">请求头包含了关于客户端环境和请求正文的元数据。在编写爬虫时，合理伪装请求头是突破反爬策略的第一步。</p>
+        
+        <div class="protocol-detail">
+          <ul style="margin: 0; padding-left: 20px; line-height: 1.6;">
+            <li><strong>User-Agent：</strong>告诉服务器客户端的操作系统、浏览器版本等信息。如果不带此头，Python 的 Requests 库会默认发送 <code style="background: var(--bg); padding: 2px 4px; border-radius: 4px;">python-requests/x.x</code>，极易被识别为爬虫并拦截。</li>
+            <li><strong>Cookie：</strong>存储在客户端的凭证数据。很多网站（如微博、知乎）需要登录后才能查看完整数据，此时就需要在请求头中携带 Cookie。</li>
+            <li><strong>Referer：</strong>告诉服务器该请求是从哪个页面链接过来的。部分图片或视频资源通过检查 Referer 来实现防盗链。</li>
+            <li><strong>Accept：</strong>声明客户端可以处理的媒体类型，如 <code style="background: var(--bg); padding: 2px 4px; border-radius: 4px;">application/json</code> 或 <code style="background: var(--bg); padding: 2px 4px; border-radius: 4px;">text/html</code>。</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Section 7 -->
+      <article class="protocol-card">
+        <h2>7. 常见数据交互格式</h2>
+        <p style="margin-bottom: 20px; color: var(--text-muted); line-height:1.6;">当你向服务器发出请求后，服务器通常会以这两种主要格式返回数据。</p>
+        
+        <div class="protocol-detail">
+          <ul style="margin: 0; padding-left: 20px; line-height: 1.6;">
+            <li><strong>HTML (超文本标记语言)：</strong>你在浏览器中直接看到的网页结构。爬取此类数据需要使用 <code style="background: var(--bg); padding: 2px 4px; border-radius: 4px;">BeautifulSoup</code> 或 <code style="background: var(--bg); padding: 2px 4px; border-radius: 4px;">lxml</code> 进行节点树解析。</li>
+            <li><strong>JSON (JavaScript 对象简谱)：</strong>一种轻量级的数据交换格式，易于人阅读和编写，也易于机器解析。现代网站的数据大多通过 API 接口以 JSON 格式异步加载。对于爬虫而言，抓取 JSON 接口是最优解，可以直接将其转换为 Python 字典（<code style="background: var(--bg); padding: 2px 4px; border-radius: 4px;">response.json()</code>）。</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Section 8 -->
+      <article class="protocol-card">
+        <h2>8. RESTful API 设计理念</h2>
+        <p style="margin-bottom: 20px; color: var(--text-muted); line-height:1.6;">目前互联网上绝大多数公开的数据接口（如 GitHub API, Twitter API）都遵循 RESTful 风格。</p>
+        
+        <div class="protocol-detail">
+          <div style="font-weight: 700; margin-bottom: 8px;">核心特征：</div>
+          <ul style="margin: 0; padding-left: 20px; line-height: 1.6;">
+            <li><strong>资源驱动：</strong>将网络上的每一个实体（如一篇新闻、一个用户）都看作一个资源，用 URL 来定位。</li>
+            <li><strong>动词对应方法：</strong>使用不同的 HTTP 方法（GET、POST、PUT、DELETE）来代表对资源的不同操作（查、增、改、删）。例如 <code style="background: var(--bg); padding: 2px 4px; border-radius: 4px;">GET /users</code> 是获取用户列表，而 <code style="background: var(--bg); padding: 2px 4px; border-radius: 4px;">POST /users</code> 是创建新用户。</li>
+            <li><strong>无状态性：</strong>每次请求都必须包含服务器处理该请求所需的所有信息（例如把鉴权 Token 放在 Header 中），服务器不在 Session 中保存客户端的上下文状态。</li>
+          </ul>
+        </div>
+      </article>
+
     </div>
   </section>
 </main>
