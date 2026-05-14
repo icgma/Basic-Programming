@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python常用实用库 | 汕头大学《基础编程》</title>
-  <meta name="description" content="新闻传播专业必备的Python实用库：数据处理、可视化、网络爬虫、文本分析">
+  <title>Python常用实用库全景图 | 汕头大学《基础编程》</title>
+  <meta name="description" content="新闻传播与计算社会科学专业必备的 36+ Python实用库全景图：数据处理、可视化、爬虫、NLP、机器学习、Web开发">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -55,261 +55,259 @@
 <main id="main-content">
   <section class="subpage-hero">
     <div class="container">
-      <div class="section-label">📦 Essential Libraries</div>
-      <h1>Python <span class="accent">常用实用库</span></h1>
-      <p class="subtitle" style="max-width:680px;margin:0 auto">新闻传播专业必备的 Python 工具箱——从数据处理到可视化，从网络爬虫到文本分析，一站式速查。</p>
+      <div class="section-label">📦 Essential Libraries Panorama</div>
+      <h1>Python <span class="accent">常用实用库全景图</span></h1>
+      <p class="subtitle" style="max-width:800px;margin:0 auto">新闻传播与计算社会科学必备的 38 个 Python 工具箱——从数据清洗、统计分析、机器学习、自然语言处理到 Web 开发部署，涵盖了从学术研究到工业级落地的完整生态体系。</p>
     </div>
   </section>
 
   <section class="container" style="padding-top:24px;padding-bottom:40px">
     <div class="alert alert-info" style="margin-bottom:32px">
       <span class="alert-icon" aria-hidden="true">💡</span>
-      <div><strong>安装提示</strong>：所有库均可通过 <code>pip install 库名</code> 安装。推荐使用 Anaconda 发行版，大部分库已预装。遇到问题请先在 Lingma 中询问 AI 助手。</div>
+      <div><strong>安装提示</strong>：带 <span style="color:var(--blue)"><code>pip install</code></span> 标签的库需要手动安装。标注为“内置库”的直接 import 即可使用。初学者强烈建议使用 Anaconda 环境，可免除大部分第三方包的安装烦恼。</div>
     </div>
 
-    <!-- Category 1: Data Processing -->
-    <h2 class="section-title" style="margin-bottom:4px">📊 <span class="gradient">数据处理与分析</span></h2>
-    <p class="section-desc">处理表格数据、进行统计计算的核心工具。</p>
+    <!-- Category 1: Data Processing & Stats -->
+    <h2 class="section-title" style="margin-bottom:4px">📊 <span class="gradient">数据处理与科学计算</span></h2>
+    <p class="section-desc">处理海量表格数据、进行高级科学计算和统计检验的核心引擎。</p>
     <div class="lib-grid">
-
       <article class="lib-card">
-        <div class="lib-num">1</div>
-        <div class="lib-name">pandas</div>
-        <div class="lib-tagline">数据分析的"瑞士军刀"</div>
-        <div class="lib-desc">处理表格数据的首选库。读取 CSV、Excel、JSON 文件，进行筛选、分组、统计、合并——几乎所有数据分析任务都离不开它。</div>
-        <div class="lib-code">import pandas as pd
-df = pd.read_csv("news_data.csv")
-# 筛选阅读量 > 10万的新闻
-hot = df[df["views"] > 100000]
-# 按来源分组统计
-df.groupby("source")["views"].mean()</div>
-        <div class="lib-meta">
-          <span class="lib-tag scene">CSV/Excel读写</span>
-          <span class="lib-tag scene">数据清洗</span>
-          <span class="lib-tag install">pip install pandas</span>
-        </div>
+        <div class="lib-num">1</div><div class="lib-name">pandas</div><div class="lib-tagline">数据分析的"瑞士军刀"</div>
+        <div class="lib-desc">处理表格数据的首选库。读取 CSV、Excel、清洗异常值、分组、透视——它是计算社会科学的基石。</div>
+        <div class="lib-meta"><span class="lib-tag scene">数据清洗</span><span class="lib-tag scene">表格处理</span><span class="lib-tag install">pip install pandas</span></div>
       </article>
-
       <article class="lib-card">
-        <div class="lib-num">2</div>
-        <div class="lib-name">numpy</div>
-        <div class="lib-tagline">高性能数值计算引擎</div>
-        <div class="lib-desc">pandas 的底层依赖。提供高效的多维数组运算，是科学计算的基石。当你需要矩阵运算或大规模数值处理时必不可少。</div>
-        <div class="lib-code">import numpy as np
-arr = np.array([85, 92, 78, 95, 88])
-print(f"平均分: {np.mean(arr):.1f}")
-print(f"标准差: {np.std(arr):.1f}")
-# 生成 0-1 随机数矩阵
-matrix = np.random.rand(3, 4)</div>
-        <div class="lib-meta">
-          <span class="lib-tag scene">数组运算</span>
-          <span class="lib-tag scene">统计计算</span>
-          <span class="lib-tag install">pip install numpy</span>
-        </div>
+        <div class="lib-num">2</div><div class="lib-name">numpy</div><div class="lib-tagline">高性能多维数值计算</div>
+        <div class="lib-desc">pandas 的底层依赖。提供极速的多维数组（矩阵）运算，当你需要处理庞大的数值数据时必不可少。</div>
+        <div class="lib-meta"><span class="lib-tag scene">矩阵运算</span><span class="lib-tag scene">数值模拟</span><span class="lib-tag install">pip install numpy</span></div>
       </article>
-
       <article class="lib-card">
-        <div class="lib-num">3</div>
-        <div class="lib-name">openpyxl</div>
-        <div class="lib-tagline">Excel 文件读写专家</div>
-        <div class="lib-desc">当 pandas 读写 .xlsx 文件时，底层就靠它。也可以直接操作 Excel 工作表，设置格式、合并单元格、插入图表。</div>
-        <div class="lib-code">from openpyxl import load_workbook
-wb = load_workbook("report.xlsx")
-ws = wb.active
-for row in ws.iter_rows(min_row=2, values_only=True):
-    print(row[0], row[1])  # 标题, 来源
-wb.save("report_updated.xlsx")</div>
-        <div class="lib-meta">
-          <span class="lib-tag scene">Excel读写</span>
-          <span class="lib-tag scene">格式设置</span>
-          <span class="lib-tag install">pip install openpyxl</span>
-        </div>
+        <div class="lib-num">3</div><div class="lib-name">scipy</div><div class="lib-tagline">学术级科学计算库</div>
+        <div class="lib-desc">基于 numpy 扩展，提供高级的数学算法和统计学函数，例如 T检验、卡方检验、傅里叶变换、聚类算法等。</div>
+        <div class="lib-meta"><span class="lib-tag scene">统计检验</span><span class="lib-tag scene">科学计算</span><span class="lib-tag install">pip install scipy</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">4</div><div class="lib-name">statsmodels</div><div class="lib-tagline">严谨的计量经济学工具</div>
+        <div class="lib-desc">用于估计不同的统计模型，如线性回归（OLS）、时间序列分析等。相比 scikit-learn，它提供详尽的 P值 和置信区间报告。</div>
+        <div class="lib-meta"><span class="lib-tag scene">线性回归</span><span class="lib-tag scene">统计推断</span><span class="lib-tag install">pip install statsmodels</span></div>
       </article>
     </div>
 
-    <!-- Category 2: Visualization -->
+    <!-- Category 2: File Formats -->
+    <h2 class="section-title" style="margin-top:56px;margin-bottom:4px">🗄️ <span class="gradient">文件与格式解析</span></h2>
+    <p class="section-desc">打破数据孤岛，连接各种格式的文档。</p>
+    <div class="lib-grid">
+      <article class="lib-card">
+        <div class="lib-num">5</div><div class="lib-name">openpyxl</div><div class="lib-tagline">Excel 文件读写专家</div>
+        <div class="lib-desc">直接读取、写入 .xlsx 文件。可精细控制单元格格式、颜色、图表，自动化生成带格式的 Excel 报表。</div>
+        <div class="lib-meta"><span class="lib-tag scene">Excel读写</span><span class="lib-tag scene">办公自动化</span><span class="lib-tag install">pip install openpyxl</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">6</div><div class="lib-name">json</div><div class="lib-tagline">万能的数据交换格式</div>
+        <div class="lib-desc">Python 内置库。现代 API 数据传输的绝对主流格式，可将 Python 字典和 JSON 字符串完美相互转换。</div>
+        <div class="lib-meta"><span class="lib-tag scene">API解析</span><span class="lib-tag scene">字典序列化</span><span class="lib-tag install">内置库，无需安装</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">7</div><div class="lib-name">csv</div><div class="lib-tagline">最通用的表格数据格式</div>
+        <div class="lib-desc">Python 内置库。处理海量纯文本逗号分隔值的利器，在不需庞大 pandas 依赖时轻量且快速。</div>
+        <div class="lib-meta"><span class="lib-tag scene">轻量级存储</span><span class="lib-tag scene">日志导出</span><span class="lib-tag install">内置库，无需安装</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">8</div><div class="lib-name">PyYAML</div><div class="lib-tagline">人类可读的配置文件格式</div>
+        <div class="lib-desc">YAML 常用于存储项目的系统配置。比起 JSON，它支持注释并且格式更加直观。</div>
+        <div class="lib-meta"><span class="lib-tag scene">系统配置</span><span class="lib-tag scene">参数管理</span><span class="lib-tag install">pip install pyyaml</span></div>
+      </article>
+    </div>
+
+    <!-- Category 3: Visualization -->
     <h2 class="section-title" style="margin-top:56px;margin-bottom:4px">📈 <span class="gradient">数据可视化</span></h2>
-    <p class="section-desc">把数据变成直观、有说服力的图表。</p>
+    <p class="section-desc">让枯燥的数据变成顶刊级别的优雅图表。</p>
     <div class="lib-grid">
-
       <article class="lib-card">
-        <div class="lib-num">4</div>
-        <div class="lib-name">matplotlib</div>
-        <div class="lib-tagline">Python 绘图的"老大哥"</div>
-        <div class="lib-desc">最经典的绑图库，支持折线图、柱状图、散点图、饼图等几乎所有图表类型。学术论文和报告中最常用。</div>
-        <div class="lib-code">import matplotlib.pyplot as plt
-x = ["科技", "娱乐", "体育", "财经"]
-y = [350, 280, 190, 220]
-plt.bar(x, y, color="#10b981")
-plt.title("新闻分类统计")
-plt.savefig("chart.png", dpi=150)
-plt.show()</div>
-        <div class="lib-meta">
-          <span class="lib-tag scene">学术图表</span>
-          <span class="lib-tag scene">高度可定制</span>
-          <span class="lib-tag install">pip install matplotlib</span>
-        </div>
+        <div class="lib-num">9</div><div class="lib-name">matplotlib</div><div class="lib-tagline">Python 绘图的"老大哥"</div>
+        <div class="lib-desc">最经典的基础绘图库。支持几乎所有的 2D 图表类型，高度可定制，是生成学术论文（如 Nature/Science）静态图表的基石。</div>
+        <div class="lib-meta"><span class="lib-tag scene">学术图表</span><span class="lib-tag scene">基础绘制</span><span class="lib-tag install">pip install matplotlib</span></div>
       </article>
-
       <article class="lib-card">
-        <div class="lib-num">5</div>
-        <div class="lib-name">wordcloud</div>
-        <div class="lib-tagline">一行代码生成词云</div>
-        <div class="lib-desc">将文本中的高频词汇以视觉化方式呈现。字越大代表出现频率越高，非常适合展示舆情分析结果。</div>
-        <div class="lib-code">from wordcloud import WordCloud
-text = "人工智能 大数据 机器学习 深度学习 ..."
-wc = WordCloud(
-    font_path="simhei.ttf",  # 中文字体
-    width=800, height=400
-).generate(text)
-wc.to_file("wordcloud.png")</div>
-        <div class="lib-meta">
-          <span class="lib-tag scene">词云图</span>
-          <span class="lib-tag scene">舆情可视化</span>
-          <span class="lib-tag warn">⚠️ 中文需指定字体</span>
-        </div>
+        <div class="lib-num">10</div><div class="lib-name">seaborn</div><div class="lib-tagline">高颜值统计可视化</div>
+        <div class="lib-desc">基于 matplotlib 封装。默认配色高级，只需一行代码就能画出小提琴图、热力图、联合分布图等复杂的统计学图表。</div>
+        <div class="lib-meta"><span class="lib-tag scene">统计分布</span><span class="lib-tag scene">极简语法</span><span class="lib-tag install">pip install seaborn</span></div>
       </article>
-
       <article class="lib-card">
-        <div class="lib-num">6</div>
-        <div class="lib-name">pyecharts</div>
-        <div class="lib-tagline">交互式图表神器</div>
-        <div class="lib-desc">生成可交互的 HTML 图表（鼠标悬停、缩放、筛选），视觉效果比 matplotlib 更现代，非常适合做数据新闻展示。</div>
-        <div class="lib-code">from pyecharts.charts import Bar
-from pyecharts import options as opts
-bar = (Bar()
-    .add_xaxis(["科技","娱乐","体育"])
-    .add_yaxis("新闻数量", [350, 280, 190])
-    .set_global_opts(title_opts=opts.TitleOpts(
-        title="新闻分类统计")))
-bar.render("chart.html")</div>
-        <div class="lib-meta">
-          <span class="lib-tag scene">交互式图表</span>
-          <span class="lib-tag scene">数据新闻</span>
-          <span class="lib-tag install">pip install pyecharts</span>
-        </div>
+        <div class="lib-num">11</div><div class="lib-name">pyecharts</div><div class="lib-tagline">惊艳的交互式报表</div>
+        <div class="lib-desc">基于百度 Echarts 的 Python 接口，生成可交互的 HTML 图表（悬停展示数据、缩放平移），非常适合做数据新闻展示。</div>
+        <div class="lib-meta"><span class="lib-tag scene">交互图表</span><span class="lib-tag scene">数据新闻</span><span class="lib-tag install">pip install pyecharts</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">12</div><div class="lib-name">plotly</div><div class="lib-tagline">国际主流可交互可视化引擎</div>
+        <div class="lib-desc">与 Dash 无缝集成的现代绘图库。生成带有丝滑动画效果的高端图表，也是数据科学领域极为推崇的动态制图工具。</div>
+        <div class="lib-meta"><span class="lib-tag scene">动态动画</span><span class="lib-tag scene">高频金融</span><span class="lib-tag install">pip install plotly</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">13</div><div class="lib-name">wordcloud</div><div class="lib-tagline">一行代码生成词云</div>
+        <div class="lib-desc">将文本中的高频词汇以视觉化方式呈现。字越大代表出现频率越高，适合在报告开头吸引眼球。（处理中文需指定字体文件）。</div>
+        <div class="lib-meta"><span class="lib-tag scene">词云图</span><span class="lib-tag scene">词频展示</span><span class="lib-tag install">pip install wordcloud</span></div>
       </article>
     </div>
 
-    <!-- Category 3: Web Scraping -->
-    <h2 class="section-title" style="margin-top:56px;margin-bottom:4px">🕷️ <span class="gradient">网络爬虫</span></h2>
-    <p class="section-desc">从互联网上采集数据的利器。</p>
+    <!-- Category 4: Web Scraping -->
+    <h2 class="section-title" style="margin-top:56px;margin-bottom:4px">🕷️ <span class="gradient">网络请求与爬虫</span></h2>
+    <p class="section-desc">突破反爬机制，将全网数据收入囊中。</p>
     <div class="lib-grid">
-
       <article class="lib-card">
-        <div class="lib-num">7</div>
-        <div class="lib-name">requests</div>
-        <div class="lib-tagline">HTTP 请求的"人话版"</div>
-        <div class="lib-desc">发送 HTTP 请求的标准库。GET 获取网页、POST 提交表单——一切网络数据采集的起点。语法极其简洁。</div>
-        <div class="lib-code">import requests
-url = "https://news.example.com"
-resp = requests.get(url, timeout=10)
-resp.encoding = "utf-8"
-print(resp.status_code)  # 200
-print(resp.text[:200])   # 网页前200字符</div>
-        <div class="lib-meta">
-          <span class="lib-tag scene">网页请求</span>
-          <span class="lib-tag scene">API调用</span>
-          <span class="lib-tag install">pip install requests</span>
-        </div>
+        <div class="lib-num">14</div><div class="lib-name">requests</div><div class="lib-tagline">HTTP 请求的"人话版"</div>
+        <div class="lib-desc">Python 爬虫界绝对的霸主。使用最直观的语法发送 GET/POST 请求，伪装 Headers、携带 Cookie 都非常简单。</div>
+        <div class="lib-meta"><span class="lib-tag scene">网页请求</span><span class="lib-tag scene">API调用</span><span class="lib-tag install">pip install requests</span></div>
       </article>
-
       <article class="lib-card">
-        <div class="lib-num">8</div>
-        <div class="lib-name">BeautifulSoup</div>
-        <div class="lib-tagline">HTML 解析的"手术刀"</div>
-        <div class="lib-desc">拿到网页源码后，用它精准提取你需要的内容——标题、链接、正文。配合 requests 使用，是爬虫的黄金搭档。</div>
-        <div class="lib-code">from bs4 import BeautifulSoup
-soup = BeautifulSoup(html, "html.parser")
-# 提取所有新闻标题
-titles = soup.find_all("h2", class_="title")
-for t in titles:
-    print(t.get_text(strip=True))</div>
-        <div class="lib-meta">
-          <span class="lib-tag scene">HTML解析</span>
-          <span class="lib-tag scene">数据提取</span>
-          <span class="lib-tag install">pip install beautifulsoup4</span>
-        </div>
+        <div class="lib-num">15</div><div class="lib-name">httpx</div><div class="lib-tagline">支持异步的现代 HTTP 客户端</div>
+        <div class="lib-desc">Requests 的升级版，兼容其所有语法，但额外支持 `async/await` 异步并发请求和 HTTP/2 协议，适合大规模高并发爬虫。</div>
+        <div class="lib-meta"><span class="lib-tag scene">异步并发</span><span class="lib-tag scene">HTTP/2</span><span class="lib-tag install">pip install httpx</span></div>
       </article>
-
       <article class="lib-card">
-        <div class="lib-num">9</div>
-        <div class="lib-name">selenium</div>
-        <div class="lib-tagline">浏览器自动化"司机"</div>
-        <div class="lib-desc">当网站需要 JavaScript 渲染或登录才能看到内容时，selenium 能模拟真人操作浏览器——点击、滚动、输入，全都行。</div>
-        <div class="lib-code">from selenium import webdriver
-from selenium.webdriver.common.by import By
-driver = webdriver.Chrome()
-driver.get("https://weibo.com")
-# 等待并点击元素
-btn = driver.find_element(By.CSS_SELECTOR, ".btn")
-btn.click()
-driver.quit()</div>
-        <div class="lib-meta">
-          <span class="lib-tag scene">动态页面</span>
-          <span class="lib-tag scene">模拟登录</span>
-          <span class="lib-tag warn">⚠️ 需下载浏览器驱动</span>
-        </div>
+        <div class="lib-num">16</div><div class="lib-name">BeautifulSoup</div><div class="lib-tagline">HTML 解析的"手术刀"</div>
+        <div class="lib-desc">拿到网页源码后，用它能够极其优雅地根据标签、类名精准提取内容（如新闻标题、正文）。新手极其友好。</div>
+        <div class="lib-meta"><span class="lib-tag scene">HTML解析</span><span class="lib-tag scene">DOM树操作</span><span class="lib-tag install">pip install beautifulsoup4</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">17</div><div class="lib-name">lxml</div><div class="lib-tagline">工业级超速解析引擎</div>
+        <div class="lib-desc">底层由 C 语言编写的 XML/HTML 解析库，速度极快，支持强大的 XPath 语法直接进行节点定位。</div>
+        <div class="lib-meta"><span class="lib-tag scene">XPath提取</span><span class="lib-tag scene">高速解析</span><span class="lib-tag install">pip install lxml</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">18</div><div class="lib-name">selenium</div><div class="lib-tagline">突破 JS 渲染的终极杀器</div>
+        <div class="lib-desc">通过驱动真实的 Chrome/Edge 浏览器模拟真人点击、滚动、滑块验证。遇到极难爬取的动态加载网站时的首选。</div>
+        <div class="lib-meta"><span class="lib-tag scene">动态页面</span><span class="lib-tag scene">UI自动化</span><span class="lib-tag install">pip install selenium</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">19</div><div class="lib-name">scrapy</div><div class="lib-tagline">全副武装的爬虫重型航母</div>
+        <div class="lib-desc">企业级的高并发爬虫框架。内置了去重队列、多线程调度、中间件拦截、数据持久化存储等完整生态。</div>
+        <div class="lib-meta"><span class="lib-tag scene">大规模抓取</span><span class="lib-tag scene">系统级框架</span><span class="lib-tag install">pip install scrapy</span></div>
       </article>
     </div>
 
-    <!-- Category 4: Text Analysis -->
-    <h2 class="section-title" style="margin-top:56px;margin-bottom:4px">📝 <span class="gradient">文本分析</span></h2>
-    <p class="section-desc">中文分词、情感分析、关键词提取。</p>
+    <!-- Category 5: Text & NLP -->
+    <h2 class="section-title" style="margin-top:56px;margin-bottom:4px">📝 <span class="gradient">文本分析与 NLP</span></h2>
+    <p class="section-desc">将非结构化文本转化为有价值的情感洞察和语义网络。</p>
     <div class="lib-grid">
-
       <article class="lib-card">
-        <div class="lib-num">10</div>
-        <div class="lib-name">jieba</div>
-        <div class="lib-tagline">中文分词的"国民工具"</div>
-        <div class="lib-desc">把一段中文文本切分成一个个词语。支持精确模式、全模式、搜索引擎模式，还能自定义词典加入专业术语。</div>
-        <div class="lib-code">import jieba
-text = "汕头大学新闻传播学院开设基础编程课程"
-words = jieba.lcut(text)
-print(words)
-# ['汕头大学', '新闻', '传播', '学院', '开设',
-#  '基础', '编程', '课程']</div>
-        <div class="lib-meta">
-          <span class="lib-tag scene">中文分词</span>
-          <span class="lib-tag scene">关键词提取</span>
-          <span class="lib-tag install">pip install jieba</span>
-        </div>
+        <div class="lib-num">20</div><div class="lib-name">jieba</div><div class="lib-tagline">中文分词的"国民工具"</div>
+        <div class="lib-desc">把一段中文切分成独立词语。支持全模式、精确模式、搜索引擎模式，并允许导入自定义专业词典。</div>
+        <div class="lib-meta"><span class="lib-tag scene">中文分词</span><span class="lib-tag scene">关键词提取</span><span class="lib-tag install">pip install jieba</span></div>
       </article>
-
       <article class="lib-card">
-        <div class="lib-num">11</div>
-        <div class="lib-name">re (正则表达式)</div>
-        <div class="lib-tagline">文本匹配的"万能钥匙"</div>
-        <div class="lib-desc">Python 内置库，无需安装。用模式匹配提取电话号码、邮箱、URL 等结构化信息，数据清洗必备技能。</div>
-        <div class="lib-code">import re
-text = "联系方式：13800138000，邮箱 test@stu.edu.cn"
-phone = re.findall(r"1[3-9]\d{9}", text)
-email = re.findall(r"\S+@\S+\.\S+", text)
-print(f"电话: {phone}")  # ['13800138000']
-print(f"邮箱: {email}")  # ['test@stu.edu.cn']</div>
-        <div class="lib-meta">
-          <span class="lib-tag scene">模式匹配</span>
-          <span class="lib-tag scene">数据清洗</span>
-          <span class="lib-tag install">内置库，无需安装</span>
-        </div>
+        <div class="lib-num">21</div><div class="lib-name">snownlp</div><div class="lib-tagline">极简中文情感分析</div>
+        <div class="lib-desc">无需复杂模型，直接针对中文文本打出 [0, 1] 的情感分数（1为极度积极，0为极度消极）。适合电商评论、微博情感分析。</div>
+        <div class="lib-meta"><span class="lib-tag scene">情感打分</span><span class="lib-tag scene">文本特征</span><span class="lib-tag install">pip install snownlp</span></div>
       </article>
-
       <article class="lib-card">
-        <div class="lib-num">12</div>
-        <div class="lib-name">collections</div>
-        <div class="lib-tagline">词频统计的"快捷方式"</div>
-        <div class="lib-desc">Python 内置库。其中 Counter 类专门用于统计元素频率，一行代码搞定词频排序，是文本分析的好帮手。</div>
-        <div class="lib-code">from collections import Counter
-words = ["人工智能","大数据","人工智能","机器学习",
-         "大数据","人工智能","深度学习"]
-freq = Counter(words)
-print(freq.most_common(3))
-# [('人工智能', 3), ('大数据', 2), ('机器学习', 1)]</div>
-        <div class="lib-meta">
-          <span class="lib-tag scene">词频统计</span>
-          <span class="lib-tag scene">计数排序</span>
-          <span class="lib-tag install">内置库，无需安装</span>
-        </div>
+        <div class="lib-num">22</div><div class="lib-name">gensim</div><div class="lib-tagline">主题建模与词向量神兵</div>
+        <div class="lib-desc">文本挖掘的高阶工具。主要用于实现 Word2Vec（寻找语义相似词）和 LDA 主题模型（聚类海量文本探讨议题）。</div>
+        <div class="lib-meta"><span class="lib-tag scene">Word2Vec</span><span class="lib-tag scene">LDA主题模型</span><span class="lib-tag install">pip install gensim</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">23</div><div class="lib-name">spaCy</div><div class="lib-tagline">工业级多语种 NLP 处理库</div>
+        <div class="lib-desc">专为生产环境设计。提供极速的命名实体识别（NER，识别人名地名机构名）、词性标注和依存句法分析。</div>
+        <div class="lib-meta"><span class="lib-tag scene">命名实体识别</span><span class="lib-tag scene">句法分析</span><span class="lib-tag install">pip install spacy</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">24</div><div class="lib-name">re</div><div class="lib-tagline">正则表达式（内置）</div>
+        <div class="lib-desc">文本匹配的万能钥匙。用精炼的模式匹配迅速从杂乱无章的文本中清洗出手机号、邮箱、特定格式的金额等。</div>
+        <div class="lib-meta"><span class="lib-tag scene">规则匹配</span><span class="lib-tag scene">数据清洗</span><span class="lib-tag install">内置库，无需安装</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">25</div><div class="lib-name">collections</div><div class="lib-tagline">自带的词频统计专家</div>
+        <div class="lib-desc">内置库中的 <code>Counter</code> 对象是文本分析神器，只需一行代码就能完成词频统计、排序以及 TopN 的提取。</div>
+        <div class="lib-meta"><span class="lib-tag scene">词频统计</span><span class="lib-tag scene">计次排序</span><span class="lib-tag install">内置库，无需安装</span></div>
+      </article>
+    </div>
+
+    <!-- Category 6: ML & AI -->
+    <h2 class="section-title" style="margin-top:56px;margin-bottom:4px">🧠 <span class="gradient">机器学习与 AI 开发</span></h2>
+    <p class="section-desc">从经典的预测算法到当前最前沿的大模型基座。</p>
+    <div class="lib-grid">
+      <article class="lib-card">
+        <div class="lib-num">26</div><div class="lib-name">scikit-learn</div><div class="lib-tagline">传统机器学习集大成者</div>
+        <div class="lib-desc">包含所有的经典算法：线性回归、支持向量机 (SVM)、随机森林、K-Means 聚类。提供极其一致且优雅的 API 设计。</div>
+        <div class="lib-meta"><span class="lib-tag scene">分类回归</span><span class="lib-tag scene">降维聚类</span><span class="lib-tag install">pip install scikit-learn</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">27</div><div class="lib-name">transformers</div><div class="lib-tagline">HuggingFace 大模型枢纽</div>
+        <div class="lib-desc">当今 AI 圈最火爆的库。只需几行代码即可下载和运行全球最顶尖的开源大模型（如 Llama 3, BERT, Qwen）进行本地化推理。</div>
+        <div class="lib-meta"><span class="lib-tag scene">大模型调用</span><span class="lib-tag scene">本地微调</span><span class="lib-tag install">pip install transformers</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">28</div><div class="lib-name">openai</div><div class="lib-tagline">官方 API 交互基石</div>
+        <div class="lib-desc">调用 GPT 系列大模型的官方 SDK。无论是构建自动写稿机器人还是多代理协作（Multi-Agent），这是通往 AGI 最稳定的入口。</div>
+        <div class="lib-meta"><span class="lib-tag scene">GPT接口调用</span><span class="lib-tag scene">代理构建</span><span class="lib-tag install">pip install openai</span></div>
+      </article>
+    </div>
+
+    <!-- Category 7: Web Apps & UI -->
+    <h2 class="section-title" style="margin-top:56px;margin-bottom:4px">🌐 <span class="gradient">Web应用与快速交互</span></h2>
+    <p class="section-desc">把后端的算法和数据，极速转换为前端炫酷的交互式网页应用。</p>
+    <div class="lib-grid">
+      <article class="lib-card">
+        <div class="lib-num">29</div><div class="lib-name">streamlit</div><div class="lib-tagline">数据科学专属 Web 框架</div>
+        <div class="lib-desc">不懂前端也能写出极其美观的响应式网页！将你的 Pandas 数据和 Matplotlib 图表加上按钮和输入框，只需纯 Python 代码。</div>
+        <div class="lib-meta"><span class="lib-tag scene">数据看板开发</span><span class="lib-tag scene">仪表盘展示</span><span class="lib-tag install">pip install streamlit</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">30</div><div class="lib-name">gradio</div><div class="lib-tagline">AI 模型演示 UI 生成器</div>
+        <div class="lib-desc">专为展示机器学习模型设计。将你的 AI 函数一键包装为可通过浏览器访问的对话框、画板或拖拽上传界面。</div>
+        <div class="lib-meta"><span class="lib-tag scene">模型Demo呈现</span><span class="lib-tag scene">快速分享</span><span class="lib-tag install">pip install gradio</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">31</div><div class="lib-name">fastapi</div><div class="lib-tagline">现代高性能 API 开发利器</div>
+        <div class="lib-desc">当你想为自己的代码提供稳定服务接口时使用。自带完整的自动生成文档（Swagger UI），并利用异步特性实现惊人的速度。</div>
+        <div class="lib-meta"><span class="lib-tag scene">后端API服务</span><span class="lib-tag scene">高并发处理</span><span class="lib-tag install">pip install fastapi</span></div>
+      </article>
+    </div>
+
+    <!-- Category 8: Databases -->
+    <h2 class="section-title" style="margin-top:56px;margin-bottom:4px">💽 <span class="gradient">数据库开发与 ORM</span></h2>
+    <p class="section-desc">结构化持久存储，解决亿级数据量的查询问题。</p>
+    <div class="lib-grid">
+      <article class="lib-card">
+        <div class="lib-num">32</div><div class="lib-name">sqlite3</div><div class="lib-tagline">单文件轻量级数据库</div>
+        <div class="lib-desc">Python 内置的微型数据库引擎，生成单一的 `.db` 文件。当项目太小不想装 MySQL，但又需要 SQL 查询能力时的完美折中。</div>
+        <div class="lib-meta"><span class="lib-tag scene">本地结构化存储</span><span class="lib-tag scene">轻量级查询</span><span class="lib-tag install">内置库，无需安装</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">33</div><div class="lib-name">SQLAlchemy</div><div class="lib-tagline">Python 的 ORM 霸主</div>
+        <div class="lib-desc">不再手写繁琐的 SQL 语句。把数据库表映射为 Python 的对象（类），像操作普通对象一样实现增删改查。</div>
+        <div class="lib-meta"><span class="lib-tag scene">ORM映射</span><span class="lib-tag scene">跨数据库兼容</span><span class="lib-tag install">pip install sqlalchemy</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">34</div><div class="lib-name">pymysql</div><div class="lib-tagline">纯 Python 的 MySQL 驱动</div>
+        <div class="lib-desc">让你通过 Python 代码连接到远程的 MySQL 或 MariaDB 服务器，直接执行原生的 SQL 指令。</div>
+        <div class="lib-meta"><span class="lib-tag scene">MySQL直连</span><span class="lib-tag scene">原生SQL执行</span><span class="lib-tag install">pip install pymysql</span></div>
+      </article>
+    </div>
+
+    <!-- Category 9: Utils -->
+    <h2 class="section-title" style="margin-top:56px;margin-bottom:4px">⚙️ <span class="gradient">系统工具与工程效率</span></h2>
+    <p class="section-desc">看不见但离不开的基础设施，保障代码优雅和系统安全。</p>
+    <div class="lib-grid">
+      <article class="lib-card">
+        <div class="lib-num">35</div><div class="lib-name">os / pathlib</div><div class="lib-tagline">文件系统大管家</div>
+        <div class="lib-desc">Python 内置库。批量创建文件夹、拼接路径、获取文件扩展名，尤其是现代化的 `pathlib` 让路径操作变得极为优雅。</div>
+        <div class="lib-meta"><span class="lib-tag scene">文件系统操作</span><span class="lib-tag scene">路径拼接</span><span class="lib-tag install">内置库，无需安装</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">36</div><div class="lib-name">datetime</div><div class="lib-tagline">时间控制大师</div>
+        <div class="lib-desc">Python 内置库。计算两个日期之间的差值、将字符串解析为时间戳、提取年份和月份，时间序列分析必备。</div>
+        <div class="lib-meta"><span class="lib-tag scene">时间差计算</span><span class="lib-tag scene">日期格式化</span><span class="lib-tag install">内置库，无需安装</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">37</div><div class="lib-name">tqdm</div><div class="lib-tagline">丝滑进度条神器</div>
+        <div class="lib-desc">在任意的 for 循环外包裹一个 `tqdm()`，立刻拥有带有剩余时间预测、速度计算的精美命令行进度条。告别长时间等待的焦虑。</div>
+        <div class="lib-meta"><span class="lib-tag scene">耗时监控</span><span class="lib-tag scene">命令行美化</span><span class="lib-tag install">pip install tqdm</span></div>
+      </article>
+      <article class="lib-card">
+        <div class="lib-num">38</div><div class="lib-name">python-dotenv</div><div class="lib-tagline">机密数据门神</div>
+        <div class="lib-desc">永远不要把密码或 API Key 写在代码里！用它从本地的 `.env` 隐藏文件中安全地加载机密环境变量。学术规范必备。</div>
+        <div class="lib-meta"><span class="lib-tag scene">环境变量管理</span><span class="lib-tag scene">密钥保护</span><span class="lib-tag install">pip install python-dotenv</span></div>
       </article>
     </div>
   </section>
@@ -318,37 +316,24 @@ print(freq.most_common(3))
   <section class="section-alt" style="padding:60px 32px">
     <div class="container">
       <div class="section-label">🗺️ Quick Reference</div>
-      <h2 class="section-title">选库速查 <span class="gradient">"我想做……用什么库？"</span></h2>
+      <h2 class="section-title">选库速查 <span class="gradient">"遇到问题？去哪里找？"</span></h2>
       <div class="tip-grid">
         <article class="tip-card">
-          <h4>📄 读取 CSV / Excel</h4>
-          <p><code>pandas</code> → <code>pd.read_csv()</code> / <code>pd.read_excel()</code></p>
+          <h4>🤖 想调用 AI 或处理语言？</h4>
+          <p>调用GPT：<code>openai</code>；分词：<code>jieba</code>；高阶语义抽取：<code>spaCy</code> / <code>gensim</code></p>
         </article>
         <article class="tip-card">
-          <h4>📊 画柱状图 / 折线图</h4>
-          <p>静态图 → <code>matplotlib</code>；交互图 → <code>pyecharts</code></p>
+          <h4>🕷️ 想从网页上拔数据？</h4>
+          <p>轻量：<code>requests</code> + <code>BeautifulSoup</code>；动态滑块网页：<code>selenium</code>；工业海量爬取：<code>scrapy</code></p>
         </article>
         <article class="tip-card">
-          <h4>🕷️ 抓取网页内容</h4>
-          <p><code>requests</code> + <code>BeautifulSoup</code>；动态页面 → <code>selenium</code></p>
+          <h4>📊 想做出能让导师惊艳的图？</h4>
+          <p>学术发刊：<code>matplotlib</code> + <code>seaborn</code>；网页动态交互展示：<code>pyecharts</code> / <code>plotly</code></p>
         </article>
         <article class="tip-card">
-          <h4>✂️ 中文分词</h4>
-          <p><code>jieba.lcut("文本")</code> → 返回词语列表</p>
+          <h4>🌐 想把代码转成产品给人用？</h4>
+          <p>快速数据看板/产品演示页：<code>streamlit</code> 或 <code>gradio</code>；稳定后台接口：<code>fastapi</code></p>
         </article>
-        <article class="tip-card">
-          <h4>☁️ 生成词云</h4>
-          <p><code>wordcloud</code>，中文需指定 <code>font_path</code></p>
-        </article>
-        <article class="tip-card">
-          <h4>🔢 词频统计</h4>
-          <p><code>collections.Counter(words).most_common(N)</code></p>
-        </article>
-      </div>
-
-      <div class="alert alert-warning" style="margin-top:32px">
-        <span class="alert-icon" aria-hidden="true">⚠️</span>
-        <div><strong>学术诚信提醒</strong>：使用这些库完成作业时，请确保你能解释每一行代码的作用。课堂抽查中无法解释自己代码的行为将视为违反学术诚信处理。</div>
       </div>
     </div>
   </section>
