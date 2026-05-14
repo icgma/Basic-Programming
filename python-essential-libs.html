@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python常用实用库 | 汕头大学《基础编程》</title>
+  <meta name="description" content="新闻传播专业必备的Python实用库：数据处理、可视化、网络爬虫、文本分析">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .subpage-hero{padding:120px 20px 60px;text-align:center}
+    .subpage-hero h1{font-size:2.5rem;margin-bottom:20px}
+    .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:20px;margin-top:32px}
+    .lib-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:28px 24px;backdrop-filter:blur(8px);transition:all .3s}
+    .lib-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:var(--card-shadow)}
+    .lib-num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:var(--grad-hero);color:#fff;font-weight:800;font-size:.9rem;margin-bottom:14px}
+    .lib-name{font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:4px}
+    .lib-tagline{font-size:.84rem;color:var(--emerald);font-weight:600;margin-bottom:12px}
+    .lib-desc{font-size:.84rem;color:var(--text2);line-height:1.7;margin-bottom:14px}
+    .lib-code{background:var(--code-bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;font-family:'JetBrains Mono',monospace;font-size:.76rem;line-height:1.7;color:var(--emerald);overflow-x:auto;margin-bottom:14px;white-space:pre}
+    .lib-meta{display:flex;gap:8px;flex-wrap:wrap}
+    .lib-tag{padding:3px 10px;border-radius:999px;font-size:.72rem;font-weight:600;border:1px solid var(--border);color:var(--text3)}
+    .lib-tag.scene{border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.08);color:var(--emerald)}
+    .lib-tag.warn{border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.08);color:var(--amber)}
+    .lib-tag.install{border-color:rgba(59,130,246,.2);background:rgba(59,130,246,.08);color:var(--blue)}
+    .tip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:24px}
+    .tip-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:20px;backdrop-filter:blur(6px)}
+    .tip-card h4{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:8px}
+    .tip-card p{font-size:.82rem;color:var(--text2);line-height:1.7}
+  </style>
+</head>
+<body>
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow bg-glow-1" aria-hidden="true"></div>
+<div class="bg-glow bg-glow-2" aria-hidden="true"></div>
+<div class="bg-glow bg-glow-3" aria-hidden="true"></div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="nav-brand"><a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:8px"><div class="nav-logo">🐍</div><span>基础编程</span></a></div>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">← 返回主页</a>
+      <a href="knowledge-graph.html">知识图谱</a>
+      <a href="snippet-gallery.html">代码片段</a>
+      <a href="prompt-engineering.html">AI防伪指南</a>
+      <a href="python-cheatsheet.html">Python速查</a>
+      <a href="python-essential-libs.html" class="active">实用库</a>
+      <button class="theme-toggle" id="themeToggle"><div class="theme-toggle-knob" id="themeIcon">🌙</div></button>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content">
+  <section class="subpage-hero">
+    <div class="container">
+      <div class="section-label">📦 Essential Libraries</div>
+      <h1>Python <span class="accent">常用实用库</span></h1>
+      <p class="subtitle" style="max-width:680px;margin:0 auto">新闻传播专业必备的 Python 工具箱——从数据处理到可视化，从网络爬虫到文本分析，一站式速查。</p>
+    </div>
+  </section>
+
+  <section class="container" style="padding-top:24px;padding-bottom:40px">
+    <div class="alert alert-info" style="margin-bottom:32px">
+      <span class="alert-icon" aria-hidden="true">💡</span>
+      <div><strong>安装提示</strong>：所有库均可通过 <code>pip install 库名</code> 安装。推荐使用 Anaconda 发行版，大部分库已预装。遇到问题请先在 Lingma 中询问 AI 助手。</div>
+    </div>
+
+    <!-- Category 1: Data Processing -->
+    <h2 class="section-title" style="margin-bottom:4px">📊 <span class="gradient">数据处理与分析</span></h2>
+    <p class="section-desc">处理表格数据、进行统计计算的核心工具。</p>
+    <div class="lib-grid">
+
+      <article class="lib-card">
+        <div class="lib-num">1</div>
+        <div class="lib-name">pandas</div>
+        <div class="lib-tagline">数据分析的"瑞士军刀"</div>
+        <div class="lib-desc">处理表格数据的首选库。读取 CSV、Excel、JSON 文件，进行筛选、分组、统计、合并——几乎所有数据分析任务都离不开它。</div>
+        <div class="lib-code">import pandas as pd
+df = pd.read_csv("news_data.csv")
+# 筛选阅读量 > 10万的新闻
+hot = df[df["views"] > 100000]
+# 按来源分组统计
+df.groupby("source")["views"].mean()</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">CSV/Excel读写</span>
+          <span class="lib-tag scene">数据清洗</span>
+          <span class="lib-tag install">pip install pandas</span>
+        </div>
+      </article>
+
+      <article class="lib-card">
+        <div class="lib-num">2</div>
+        <div class="lib-name">numpy</div>
+        <div class="lib-tagline">高性能数值计算引擎</div>
+        <div class="lib-desc">pandas 的底层依赖。提供高效的多维数组运算，是科学计算的基石。当你需要矩阵运算或大规模数值处理时必不可少。</div>
+        <div class="lib-code">import numpy as np
+arr = np.array([85, 92, 78, 95, 88])
+print(f"平均分: {np.mean(arr):.1f}")
+print(f"标准差: {np.std(arr):.1f}")
+# 生成 0-1 随机数矩阵
+matrix = np.random.rand(3, 4)</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">数组运算</span>
+          <span class="lib-tag scene">统计计算</span>
+          <span class="lib-tag install">pip install numpy</span>
+        </div>
+      </article>
+
+      <article class="lib-card">
+        <div class="lib-num">3</div>
+        <div class="lib-name">openpyxl</div>
+        <div class="lib-tagline">Excel 文件读写专家</div>
+        <div class="lib-desc">当 pandas 读写 .xlsx 文件时，底层就靠它。也可以直接操作 Excel 工作表，设置格式、合并单元格、插入图表。</div>
+        <div class="lib-code">from openpyxl import load_workbook
+wb = load_workbook("report.xlsx")
+ws = wb.active
+for row in ws.iter_rows(min_row=2, values_only=True):
+    print(row[0], row[1])  # 标题, 来源
+wb.save("report_updated.xlsx")</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">Excel读写</span>
+          <span class="lib-tag scene">格式设置</span>
+          <span class="lib-tag install">pip install openpyxl</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Category 2: Visualization -->
+    <h2 class="section-title" style="margin-top:56px;margin-bottom:4px">📈 <span class="gradient">数据可视化</span></h2>
+    <p class="section-desc">把数据变成直观、有说服力的图表。</p>
+    <div class="lib-grid">
+
+      <article class="lib-card">
+        <div class="lib-num">4</div>
+        <div class="lib-name">matplotlib</div>
+        <div class="lib-tagline">Python 绘图的"老大哥"</div>
+        <div class="lib-desc">最经典的绑图库，支持折线图、柱状图、散点图、饼图等几乎所有图表类型。学术论文和报告中最常用。</div>
+        <div class="lib-code">import matplotlib.pyplot as plt
+x = ["科技", "娱乐", "体育", "财经"]
+y = [350, 280, 190, 220]
+plt.bar(x, y, color="#10b981")
+plt.title("新闻分类统计")
+plt.savefig("chart.png", dpi=150)
+plt.show()</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">学术图表</span>
+          <span class="lib-tag scene">高度可定制</span>
+          <span class="lib-tag install">pip install matplotlib</span>
+        </div>
+      </article>
+
+      <article class="lib-card">
+        <div class="lib-num">5</div>
+        <div class="lib-name">wordcloud</div>
+        <div class="lib-tagline">一行代码生成词云</div>
+        <div class="lib-desc">将文本中的高频词汇以视觉化方式呈现。字越大代表出现频率越高，非常适合展示舆情分析结果。</div>
+        <div class="lib-code">from wordcloud import WordCloud
+text = "人工智能 大数据 机器学习 深度学习 ..."
+wc = WordCloud(
+    font_path="simhei.ttf",  # 中文字体
+    width=800, height=400
+).generate(text)
+wc.to_file("wordcloud.png")</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">词云图</span>
+          <span class="lib-tag scene">舆情可视化</span>
+          <span class="lib-tag warn">⚠️ 中文需指定字体</span>
+        </div>
+      </article>
+
+      <article class="lib-card">
+        <div class="lib-num">6</div>
+        <div class="lib-name">pyecharts</div>
+        <div class="lib-tagline">交互式图表神器</div>
+        <div class="lib-desc">生成可交互的 HTML 图表（鼠标悬停、缩放、筛选），视觉效果比 matplotlib 更现代，非常适合做数据新闻展示。</div>
+        <div class="lib-code">from pyecharts.charts import Bar
+from pyecharts import options as opts
+bar = (Bar()
+    .add_xaxis(["科技","娱乐","体育"])
+    .add_yaxis("新闻数量", [350, 280, 190])
+    .set_global_opts(title_opts=opts.TitleOpts(
+        title="新闻分类统计")))
+bar.render("chart.html")</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">交互式图表</span>
+          <span class="lib-tag scene">数据新闻</span>
+          <span class="lib-tag install">pip install pyecharts</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Category 3: Web Scraping -->
+    <h2 class="section-title" style="margin-top:56px;margin-bottom:4px">🕷️ <span class="gradient">网络爬虫</span></h2>
+    <p class="section-desc">从互联网上采集数据的利器。</p>
+    <div class="lib-grid">
+
+      <article class="lib-card">
+        <div class="lib-num">7</div>
+        <div class="lib-name">requests</div>
+        <div class="lib-tagline">HTTP 请求的"人话版"</div>
+        <div class="lib-desc">发送 HTTP 请求的标准库。GET 获取网页、POST 提交表单——一切网络数据采集的起点。语法极其简洁。</div>
+        <div class="lib-code">import requests
+url = "https://news.example.com"
+resp = requests.get(url, timeout=10)
+resp.encoding = "utf-8"
+print(resp.status_code)  # 200
+print(resp.text[:200])   # 网页前200字符</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">网页请求</span>
+          <span class="lib-tag scene">API调用</span>
+          <span class="lib-tag install">pip install requests</span>
+        </div>
+      </article>
+
+      <article class="lib-card">
+        <div class="lib-num">8</div>
+        <div class="lib-name">BeautifulSoup</div>
+        <div class="lib-tagline">HTML 解析的"手术刀"</div>
+        <div class="lib-desc">拿到网页源码后，用它精准提取你需要的内容——标题、链接、正文。配合 requests 使用，是爬虫的黄金搭档。</div>
+        <div class="lib-code">from bs4 import BeautifulSoup
+soup = BeautifulSoup(html, "html.parser")
+# 提取所有新闻标题
+titles = soup.find_all("h2", class_="title")
+for t in titles:
+    print(t.get_text(strip=True))</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">HTML解析</span>
+          <span class="lib-tag scene">数据提取</span>
+          <span class="lib-tag install">pip install beautifulsoup4</span>
+        </div>
+      </article>
+
+      <article class="lib-card">
+        <div class="lib-num">9</div>
+        <div class="lib-name">selenium</div>
+        <div class="lib-tagline">浏览器自动化"司机"</div>
+        <div class="lib-desc">当网站需要 JavaScript 渲染或登录才能看到内容时，selenium 能模拟真人操作浏览器——点击、滚动、输入，全都行。</div>
+        <div class="lib-code">from selenium import webdriver
+from selenium.webdriver.common.by import By
+driver = webdriver.Chrome()
+driver.get("https://weibo.com")
+# 等待并点击元素
+btn = driver.find_element(By.CSS_SELECTOR, ".btn")
+btn.click()
+driver.quit()</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">动态页面</span>
+          <span class="lib-tag scene">模拟登录</span>
+          <span class="lib-tag warn">⚠️ 需下载浏览器驱动</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Category 4: Text Analysis -->
+    <h2 class="section-title" style="margin-top:56px;margin-bottom:4px">📝 <span class="gradient">文本分析</span></h2>
+    <p class="section-desc">中文分词、情感分析、关键词提取。</p>
+    <div class="lib-grid">
+
+      <article class="lib-card">
+        <div class="lib-num">10</div>
+        <div class="lib-name">jieba</div>
+        <div class="lib-tagline">中文分词的"国民工具"</div>
+        <div class="lib-desc">把一段中文文本切分成一个个词语。支持精确模式、全模式、搜索引擎模式，还能自定义词典加入专业术语。</div>
+        <div class="lib-code">import jieba
+text = "汕头大学新闻传播学院开设基础编程课程"
+words = jieba.lcut(text)
+print(words)
+# ['汕头大学', '新闻', '传播', '学院', '开设',
+#  '基础', '编程', '课程']</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">中文分词</span>
+          <span class="lib-tag scene">关键词提取</span>
+          <span class="lib-tag install">pip install jieba</span>
+        </div>
+      </article>
+
+      <article class="lib-card">
+        <div class="lib-num">11</div>
+        <div class="lib-name">re (正则表达式)</div>
+        <div class="lib-tagline">文本匹配的"万能钥匙"</div>
+        <div class="lib-desc">Python 内置库，无需安装。用模式匹配提取电话号码、邮箱、URL 等结构化信息，数据清洗必备技能。</div>
+        <div class="lib-code">import re
+text = "联系方式：13800138000，邮箱 test@stu.edu.cn"
+phone = re.findall(r"1[3-9]\d{9}", text)
+email = re.findall(r"\S+@\S+\.\S+", text)
+print(f"电话: {phone}")  # ['13800138000']
+print(f"邮箱: {email}")  # ['test@stu.edu.cn']</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">模式匹配</span>
+          <span class="lib-tag scene">数据清洗</span>
+          <span class="lib-tag install">内置库，无需安装</span>
+        </div>
+      </article>
+
+      <article class="lib-card">
+        <div class="lib-num">12</div>
+        <div class="lib-name">collections</div>
+        <div class="lib-tagline">词频统计的"快捷方式"</div>
+        <div class="lib-desc">Python 内置库。其中 Counter 类专门用于统计元素频率，一行代码搞定词频排序，是文本分析的好帮手。</div>
+        <div class="lib-code">from collections import Counter
+words = ["人工智能","大数据","人工智能","机器学习",
+         "大数据","人工智能","深度学习"]
+freq = Counter(words)
+print(freq.most_common(3))
+# [('人工智能', 3), ('大数据', 2), ('机器学习', 1)]</div>
+        <div class="lib-meta">
+          <span class="lib-tag scene">词频统计</span>
+          <span class="lib-tag scene">计数排序</span>
+          <span class="lib-tag install">内置库，无需安装</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Quick Reference -->
+  <section class="section-alt" style="padding:60px 32px">
+    <div class="container">
+      <div class="section-label">🗺️ Quick Reference</div>
+      <h2 class="section-title">选库速查 <span class="gradient">"我想做……用什么库？"</span></h2>
+      <div class="tip-grid">
+        <article class="tip-card">
+          <h4>📄 读取 CSV / Excel</h4>
+          <p><code>pandas</code> → <code>pd.read_csv()</code> / <code>pd.read_excel()</code></p>
+        </article>
+        <article class="tip-card">
+          <h4>📊 画柱状图 / 折线图</h4>
+          <p>静态图 → <code>matplotlib</code>；交互图 → <code>pyecharts</code></p>
+        </article>
+        <article class="tip-card">
+          <h4>🕷️ 抓取网页内容</h4>
+          <p><code>requests</code> + <code>BeautifulSoup</code>；动态页面 → <code>selenium</code></p>
+        </article>
+        <article class="tip-card">
+          <h4>✂️ 中文分词</h4>
+          <p><code>jieba.lcut("文本")</code> → 返回词语列表</p>
+        </article>
+        <article class="tip-card">
+          <h4>☁️ 生成词云</h4>
+          <p><code>wordcloud</code>，中文需指定 <code>font_path</code></p>
+        </article>
+        <article class="tip-card">
+          <h4>🔢 词频统计</h4>
+          <p><code>collections.Counter(words).most_common(N)</code></p>
+        </article>
+      </div>
+
+      <div class="alert alert-warning" style="margin-top:32px">
+        <span class="alert-icon" aria-hidden="true">⚠️</span>
+        <div><strong>学术诚信提醒</strong>：使用这些库完成作业时，请确保你能解释每一行代码的作用。课堂抽查中无法解释自己代码的行为将视为违反学术诚信处理。</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>本网站为汕头大学《基础编程》课程教学资源，内容基于课程大纲 JOU2155B。</p>
+  <div class="footer-links">
+    <a href="index.html">课程主页</a>
+    <a href="https://icgma.github.io/Lingma-Intro/" target="_blank" rel="noopener noreferrer">Lingma IDE 指南</a>
+    <a href="https://docs.python.org/zh-cn/3/" target="_blank" rel="noopener noreferrer">Python 文档</a>
+  </div>
+  <p style="margin-top:12px;opacity:.5">&copy; 2026 汕头大学 · 长江新闻与传播学院 · CSS Lab</p>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="回到顶部">↑</button>
+
+<script>
+  const themeToggle=document.getElementById("themeToggle"),themeIcon=document.getElementById("themeIcon");
+  function applyTheme(t){document.documentElement.setAttribute("data-theme",t?"light":"dark");themeIcon.textContent=t?"☀️":"🌙"}
+  const savedTheme=localStorage.getItem("theme");let isLightMode=savedTheme==="light";applyTheme(isLightMode);
+  themeToggle.addEventListener("click",()=>{isLightMode=!isLightMode;applyTheme(isLightMode);localStorage.setItem("theme",isLightMode?"light":"dark")});
+  const navbar=document.getElementById("navbar");
+  window.addEventListener("scroll",()=>{navbar.classList.toggle("scrolled",window.scrollY>20)});
+  document.getElementById("scrollTop").addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+  window.addEventListener("scroll",()=>{document.getElementById("scrollTop").style.display=window.scrollY>400?"flex":"none"});
+</script>
+</body>
+</html>
