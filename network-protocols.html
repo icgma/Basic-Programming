@@ -185,22 +185,65 @@
         <h2><span aria-hidden="true">📡</span> 第一章：网络通信模型基础</h2>
         <p>在编写爬虫时，我们经常遇到 `ConnectionResetError` 或是 `Timeout`。理解这些错误的前提，是认清互联网通信的层级架构。现代互联网基于 <strong>TCP/IP 四层模型</strong> 运行，它将复杂的全球通信拆解成了职责清晰的装配线。</p>
         
-        <div class="architecture-diagram">
-<pre>
-【OSI 七层模型】       【TCP/IP 四层模型】         【爬虫关注的核心实体】
-+--------------+      +-------------------+       +-----------------------+
-| 7. 应用层     |      |                   |       | HTTP, HTTPS, WebSocket |
-| 6. 表示层     | ---> | 4. 应用层          | ---> | JSON, HTML, SSL加密     |
-| 5. 会话层     |      |                   |       | Cookie, Token维持状态   |
-+--------------+      +-------------------+       +-----------------------+
-| 4. 传输层     | ---> | 3. 传输层          | ---> | TCP (可靠传输, 三次握手)  |
-+--------------+      +-------------------+       +-----------------------+
-| 3. 网络层     | ---> | 2. 网络层          | ---> | IP地址 (代理IP池的作用点) |
-+--------------+      +-------------------+       +-----------------------+
-| 2. 数据链路层 |      |                   |       |                        |
-| 1. 物理层     | ---> | 1. 网络接口层       | ---> | 光纤、网卡 MAC 地址       |
-+--------------+      +-------------------+       +-----------------------+
-</pre>
+        <div class="network-models" style="display: flex; gap: 24px; margin: 40px 0; font-family: 'Inter', 'Noto Sans SC', sans-serif;">
+          <!-- OSI Model -->
+          <div style="flex: 1; display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--bg-card); box-shadow: var(--shadow);">
+            <div style="background: rgba(0,0,0,0.02); padding: 16px; text-align: center; font-weight: 700; border-bottom: 1px solid var(--border);">OSI 七层模型</div>
+            <div style="padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1;">
+              <div style="flex: 3; display: flex; flex-direction: column; gap: 8px;">
+                <div style="flex: 1; border: 1px solid rgba(59,130,246,0.2); background: rgba(59,130,246,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: var(--text2);">7. 应用层</div>
+                <div style="flex: 1; border: 1px solid rgba(59,130,246,0.2); background: rgba(59,130,246,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: var(--text2);">6. 表示层</div>
+                <div style="flex: 1; border: 1px solid rgba(59,130,246,0.2); background: rgba(59,130,246,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: var(--text2);">5. 会话层</div>
+              </div>
+              <div style="flex: 1; border: 1px solid rgba(16,185,129,0.2); background: rgba(16,185,129,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: var(--text2);">4. 传输层</div>
+              <div style="flex: 1; border: 1px solid rgba(245,158,11,0.2); background: rgba(245,158,11,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: var(--text2);">3. 网络层</div>
+              <div style="flex: 2; display: flex; flex-direction: column; gap: 8px;">
+                <div style="flex: 1; border: 1px solid rgba(139,92,246,0.2); background: rgba(139,92,246,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: var(--text2);">2. 数据链路层</div>
+                <div style="flex: 1; border: 1px solid rgba(139,92,246,0.2); background: rgba(139,92,246,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: var(--text2);">1. 物理层</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- TCP/IP Model -->
+          <div style="flex: 1; display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--bg-card); box-shadow: var(--shadow);">
+            <div style="background: rgba(0,0,0,0.02); padding: 16px; text-align: center; font-weight: 700; border-bottom: 1px solid var(--border);">TCP/IP 四层模型</div>
+            <div style="padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1;">
+              <div style="flex: 3; border: 1px solid rgba(59,130,246,0.3); background: rgba(59,130,246,0.1); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <strong style="color: var(--blue);">4. 应用层</strong>
+              </div>
+              <div style="flex: 1; border: 1px solid rgba(16,185,129,0.3); background: rgba(16,185,129,0.1); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <strong style="color: var(--emerald);">3. 传输层</strong>
+              </div>
+              <div style="flex: 1; border: 1px solid rgba(245,158,11,0.3); background: rgba(245,158,11,0.1); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <strong style="color: var(--amber);">2. 网络层</strong>
+              </div>
+              <div style="flex: 2; border: 1px solid rgba(139,92,246,0.3); background: rgba(139,92,246,0.1); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <strong style="color: var(--purple);">1. 网络接口层</strong>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Crawler Focus -->
+          <div style="flex: 1.2; display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--bg-card); box-shadow: var(--shadow);">
+            <div style="background: rgba(0,0,0,0.02); padding: 16px; text-align: center; font-weight: 700; border-bottom: 1px solid var(--border);">爬虫关注的核心实体</div>
+            <div style="padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1;">
+              <div style="flex: 3; border: 1px solid rgba(59,130,246,0.2); background: rgba(59,130,246,0.02); border-radius: 8px; display: flex; flex-direction: column; justify-content: center; padding: 0 16px; font-size: 0.85rem; color: var(--text2); line-height: 1.6;">
+                <span style="display:block; margin-bottom:4px">协议: <code style="background:var(--bg);padding:2px 4px;border-radius:4px;color:var(--text);border:1px solid var(--border)">HTTP, HTTPS, WS</code></span>
+                <span style="display:block; margin-bottom:4px">载体: <code style="background:var(--bg);padding:2px 4px;border-radius:4px;color:var(--text);border:1px solid var(--border)">JSON, HTML</code></span>
+                <span style="display:block">鉴权: <code style="background:var(--bg);padding:2px 4px;border-radius:4px;color:var(--text);border:1px solid var(--border)">Cookie, Token</code></span>
+              </div>
+              <div style="flex: 1; border: 1px solid rgba(16,185,129,0.2); background: rgba(16,185,129,0.02); border-radius: 8px; display: flex; flex-direction: column; justify-content: center; padding: 0 16px; font-size: 0.85rem; color: var(--text2);">
+                <span style="display:block">连接: <code style="background:var(--bg);padding:2px 4px;border-radius:4px;color:var(--text);border:1px solid var(--border)">TCP 三次握手</code></span>
+              </div>
+              <div style="flex: 1; border: 1px solid rgba(245,158,11,0.2); background: rgba(245,158,11,0.02); border-radius: 8px; display: flex; flex-direction: column; justify-content: center; padding: 0 16px; font-size: 0.85rem; color: var(--text2);">
+                <span style="display:block">网关: <code style="background:var(--bg);padding:2px 4px;border-radius:4px;color:var(--text);border:1px solid var(--border)">代理 IP 池作用点</code></span>
+              </div>
+              <div style="flex: 2; border: 1px solid rgba(139,92,246,0.2); background: rgba(139,92,246,0.02); border-radius: 8px; display: flex; flex-direction: column; justify-content: center; padding: 0 16px; font-size: 0.85rem; color: var(--text2);">
+                <span style="display:block">物理: 光纤 / 宽带</span>
+                <span style="display:block; margin-top:4px">硬绑: 网卡 MAC 地址</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <h3>1.1 TCP 可靠传输与“三次握手”</h3>
